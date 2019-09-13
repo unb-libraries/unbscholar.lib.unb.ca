@@ -1,0 +1,8 @@
+dockworker:
+  version: 1.0
+  instance:
+    project_prefix: SCHOLAR
+    name: unbscholar.lib.unb.ca
+    upstream_image:
+      - inveniosoftware/centos7-python:3.6
+  options:

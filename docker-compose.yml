@@ -1,0 +1,33 @@
+version: '3.6'
+
+services:
+  unbscholar.lib.unb.ca:
+    build:
+      context: .
+    restart: always
+    environment:
+      POSTGRES_DB_HOST: dspace-postgres-lib-unb-ca
+      POSTGRES_DB_PORT: "5432"
+      POSTGRES_DB_NAME: dspace
+      POSTGRES_DB_USER: dspace
+      POSTGRES_DB_PASS: dspace
+    container_name: unbscholar.lib.unb.ca
+    ports:
+      - "9987:8080"
+    networks:
+      - unbscholar.lib.unb.ca
+
+  dspace-postgres-lib-unb-ca:
+    build:
+      context: postgres/
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: dspace
+      POSTGRES_USER: dspace
+      POSTGRES_DB: dspace
+    networks:
+      - unbscholar.lib.unb.ca
+
+networks:
+  unbscholar.lib.unb.ca:
+    name: unbscholar.lib.unb.ca
