@@ -1,8 +1,23 @@
 dockworker:
-  version: 1.0
-  instance:
-    project_prefix: SCHOLAR
+  version: '3.0'
+  application:
     name: unbscholar.lib.unb.ca
-    upstream_image:
-      - inveniosoftware/centos7-python:3.6
-  options:
+    finish_marker: '99_z_notify_user_URI'
+    project_prefix: SCHOLAR
+    upstream_images:
+      - maven:3-jdk-8-alpine
+      - tomcat:8-jre8
+  deployment:
+    environments:
+      - dev
+      - prod
+  github:
+    repo: unbscholar.lib.unb.ca
+    owner: unb-libraries
+  image:
+    push_branches:
+      - dev
+      - prod
+    name: unblibraries/unbscholar.lib.unb.ca
+    date_tag_image: true
+    repository: dockercloud
