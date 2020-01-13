@@ -3,11 +3,14 @@ FROM maven:3-jdk-8-alpine as maven
 ENV DSPACE_VERSION 6.3
 ENV MAVEN_OPTS "-Djava.awt.headless=true"
 
+COPY ./build /build
+
 RUN apk --no-cache add git && \
   curl -OL https://github.com/DSpace/DSpace/releases/download/dspace-${DSPACE_VERSION}/dspace-${DSPACE_VERSION}-src-release.tar.gz && \
   tar xvzpf dspace-${DSPACE_VERSION}-src-release.tar.gz && \
   mv dspace-${DSPACE_VERSION}-src-release dspace-src && \
   cd dspace-src && \
+  cp /build/default.license ./dspace/config/ && \
   mvn $MAVEN_OPTS package
 
 
