@@ -59,7 +59,7 @@ RUN apt-get update && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
   cp /config/local.cfg $DSPACE_LOCAL_CONF && \
-  cp -R $DSPACE_INSTALL/webapps/solr $CATALINA_HOME/webapps* && \
+  cp -r $DSPACE_INSTALL/webapps/solr $CATALINA_HOME/webapps/ && \
   sed -i "s|DSPACE_INSTALL|${DSPACE_INSTALL}|g" /scripts/dspace.cron && cp /scripts/dspace.cron /etc/cron.d/dspace
 
 EXPOSE 8080 8009
