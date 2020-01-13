@@ -2,7 +2,7 @@ dockworker:
   version: '3.0'
   application:
     name: unbscholar.lib.unb.ca
-    finish_marker: '99_z_notify_user_URI'
+    finish_marker: 'Server startup in'
     project_prefix: SCHOLAR
     upstream_images:
       - maven:3-jdk-8-alpine

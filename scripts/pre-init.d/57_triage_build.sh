@@ -14,8 +14,8 @@ if [[ ! -z "$RESULT" ]]; then
   echo "Triage : Found Likely Dspace Database."
 fi
 
-# Determine if the site was previously built by checking for a settings.php file.
-#if [ -f ${DRUPAL_ROOT}/sites/default/settings.php ]; then
-  #touch /tmp/DSPACE_FILES_LIVE
-  #echo "Triage : Found Drupal Filesystem."
-#fi
+ASSETDIRSUBDIRS=$(find "$DSPACE_ASSETSTORE" -maxdepth 1 -type d | wc -l)
+if [[ ! $ASSETDIRSUBDIRS -eq 2 ]]; then
+  touch /tmp/DSPACE_FILES_LIVE
+  echo "Triage : Found Likely DSpace Assetstore Data"
+fi

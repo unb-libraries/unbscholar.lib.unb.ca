@@ -5,12 +5,8 @@ services:
     build:
       context: .
     restart: always
-    environment:
-      POSTGRES_DB_HOST: dspace-postgres-lib-unb-ca
-      POSTGRES_DB_PORT: "5432"
-      POSTGRES_DB_NAME: dspace
-      POSTGRES_DB_USER: dspace
-      POSTGRES_DB_PASS: dspace
+    env_file:
+      - ./env/dspace.env
     container_name: unbscholar.lib.unb.ca
     ports:
       - "9987:8080"
@@ -21,10 +17,8 @@ services:
     build:
       context: postgres/
     restart: always
-    environment:
-      POSTGRES_PASSWORD: dspace
-      POSTGRES_USER: dspace
-      POSTGRES_DB: dspace
+    env_file:
+      - ./env/postgres.env
     networks:
       - unbscholar.lib.unb.ca
 

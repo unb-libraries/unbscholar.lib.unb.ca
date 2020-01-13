@@ -31,23 +31,37 @@ RUN ant init_installation update_configs update_code update_webapps update_solr_
 
 FROM tomcat:8-jre8
 
+ENV DEPLOY_ENV prod
+ENV DSPACE_ASSETSTORE /assetstore
 ENV DSPACE_INSTALL /dspace
 ENV DSPACE_ROOT_WEBAPP xmlui
+ENV JAVA_OPTS -Xmx2000m
+ENV SOLR_DATASTORE /solrdata
+
+ENV DSPACE_BIN $DSPACE_INSTALL/bin/dspace
+ENV DSPACE_LOCAL_CONF $DSPACE_INSTALL/config/local.cfg
+
+COPY --from=ant /dspace $DSPACE_INSTALL
+COPY ./scripts /scripts
+COPY ./config /config
 
 RUN apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y --no-install-recommends \
+    cron \
     postgresql-client \
     netcat \
     gpg && \
   apt-get autoremove -y && \
   apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/* && \
+  cp /config/local.cfg $DSPACE_LOCAL_CONF && \
+  cp -R $DSPACE_INSTALL/webapps/solr $CATALINA_HOME/webapps* && \
+  sed -i "s|DSPACE_INSTALL|${DSPACE_INSTALL}|g" /scripts/dspace.cron && cp /scripts/dspace.cron /etc/cron.d/dspace
 
-COPY --from=ant /dspace $DSPACE_INSTALL
 EXPOSE 8080 8009
 
-ENV JAVA_OPTS=-Xmx2000m
+VOLUME $DSPACE_ASSETSTORE
+VOLUME $SOLR_DATASTORE
 
-COPY ./scripts /scripts
 ENTRYPOINT ["/scripts/run.sh"]
