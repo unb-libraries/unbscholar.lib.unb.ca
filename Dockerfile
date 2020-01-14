@@ -1,7 +1,7 @@
 FROM maven:3-jdk-8-alpine as maven
 
 ENV DSPACE_VERSION 6.3
-ENV MAVEN_OPTS "-Djava.awt.headless=true"
+ENV MAVEN_OPTS "-Djava.awt.headless=true --batch-mode"
 
 COPY ./build /build
 
