@@ -16,8 +16,8 @@ before_install:
 script:
   - set -e
   - travis_wait vendor/bin/dockworker local:build-test
+  - rm travis_wait*.log
   - vendor/unb-libraries/dockworker/scripts/kubectl/init.sh
-  - git status
   - vendor/bin/dockworker image:deploy $TRAVIS_BRANCH
 
 notifications:
