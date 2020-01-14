@@ -1,7 +1,7 @@
 FROM maven:3-jdk-8-alpine as maven
 
 ENV DSPACE_VERSION 6.3
-ENV MAVEN_OPTS "-Djava.awt.headless=true --batch-mode"
+ENV MAVEN_OPTS "-Djava.awt.headless=true"
 
 COPY ./build /build
 
@@ -11,7 +11,7 @@ RUN apk --no-cache add git && \
   mv dspace-${DSPACE_VERSION}-src-release dspace-src && \
   cd dspace-src && \
   cp /build/default.license ./dspace/config/ && \
-  mvn $MAVEN_OPTS package
+  mvn -B $MAVEN_OPTS package
 
 
 FROM tomcat:8-jre8 as ant
