@@ -10,8 +10,8 @@ git:
   depth: 1
 
 before_install:
+  - curl -Ls https://raw.githubusercontent.com/unb-libraries/dockworker/3.x/scripts/travis/init.sh | bash
   - composer install
-  - vendor/unb-libraries/dockworker/scripts/travis/init.sh
 
 script:
   - set -e
