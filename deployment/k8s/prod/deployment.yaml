@@ -35,6 +35,8 @@ spec:
         vcsRepository: unbscholar.lib.unb.ca
         vcsRef: prod
     spec:
+      nodeSelector:
+        deployenv: prod
       containers:
         -
           name: unbscholar-lib-unb-ca
