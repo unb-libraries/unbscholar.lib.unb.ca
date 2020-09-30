@@ -18,9 +18,20 @@ services:
       context: postgres/
     restart: always
     env_file:
-      - ./env/postgres.env
+      - ./env/dspace.env
     networks:
       - unbscholar.lib.unb.ca
+
+  dspace-solr-lib-unb-ca:
+    build:
+      context: solr/
+    restart: always
+    env_file:
+      - ./env/dspace.env
+    networks:
+      - unbscholar.lib.unb.ca
+    volumes:
+      - ./solr/data:/data
 
 networks:
   unbscholar.lib.unb.ca:

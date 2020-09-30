@@ -10,7 +10,7 @@
     }
   },
   "require-dev": {
-    "unb-libraries/dockworker": "~3"
+    "unb-libraries/dockworker": "~4"
   },
   "scripts": {
     "post-update-cmd": [

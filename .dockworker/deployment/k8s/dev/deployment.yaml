@@ -1,0 +1,116 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dspace
+    appMajor: "6"
+    instance: unbscholar.lib.unb.ca
+    tier: frontend
+    uri: dev-unbscholar.lib.unb.ca
+    vcsOwner: unb-libraries
+    vcsRepository: unbscholar.lib.unb.ca
+    vcsRef: dev
+  name: unbscholar-lib-unb-ca
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      uri: dev-unbscholar.lib.unb.ca
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: dspace
+        appMajor: "6"
+        instance: unbscholar.lib.unb.ca
+        tier: frontend
+        uri: dev-unbscholar.lib.unb.ca
+        vcsOwner: unb-libraries
+        vcsRepository: unbscholar.lib.unb.ca
+        vcsRef: dev
+    spec:
+      nodeSelector:
+        deployenv: dev
+      containers:
+        -
+          name: unbscholar-lib-unb-ca
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 65
+            timeoutSeconds: 3
+            periodSeconds: 15
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 130
+            timeoutSeconds: 3
+            periodSeconds: 15
+          env:
+            -
+              name: DEPLOY_ENV
+              value: dev
+            -
+              name: DSPACE_HOSTNAME
+              value: dev-unbscholar.lib.unb.ca
+            -
+              name: DSPACE_PROTOCOL
+              value: https
+            -
+              name: DSPACE_URI
+              value: dev-unbscholar.lib.unb.ca
+            -
+              name: POSTGRES_DB_HOST
+              value: dspace-postgres-lib-unb-ca
+            -
+              name: POSTGRES_DB_PORT
+              value: "5432"
+            -
+              name: POSTGRES_DB
+              value: dspace
+            -
+              name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: unbscholar
+                  key: db-user
+            -
+              name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: unbscholar
+                  key: db-user-pass
+          image: "||DEPLOYMENTIMAGE||"
+          imagePullPolicy: Always
+          ports:
+            -
+              containerPort: 8080
+          volumeMounts:
+            -
+              mountPath: /assetstore
+              name: dspace-persistent-storage
+            -
+              mountPath: /solrdata
+              name: solr-persistent-storage
+      priorityClassName: dev-med-priority-services
+      imagePullSecrets:
+        -
+          name: docker-hub-auth
+      restartPolicy: Always
+      volumes:
+        -
+          name: dspace-persistent-storage
+          persistentVolumeClaim:
+            claimName: dspace-unbscholar-lib-unb-ca
+        -
+          name: solr-persistent-storage
+          persistentVolumeClaim:
+            claimName: solr-unbscholar-lib-unb-ca

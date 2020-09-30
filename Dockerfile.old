@@ -1,0 +1,42 @@
+FROM maven:3-jdk-11 as maven
+
+ENV MAVEN_OPTS "-Djava.awt.headless=true"
+
+COPY ./build /build
+RUN apt-get install git && \
+  git clone https://github.com/DSpace/DSpace.git && \
+  mv DSpace dspace-src && \
+  cd dspace-src && \
+  cp /build/default.license ./dspace/config/ && \
+  mvn -B $MAVEN_OPTS package
+
+RUN mvn package && \
+  mv /app/dspace/target/${TARGET_DIR}/* /install && \
+  mvn clean
+
+FROM tomcat:10-jdk11 as build
+
+ENV DSPACE_ASSETSTORE /assetstore
+
+COPY --from=maven /dspace-src/dspace/target/dspace-installer /dspace
+WORKDIR /dspace
+
+# Create the initial install deployment using ANT
+ENV ANT_VERSION 1.10.7
+ENV ANT_HOME /tmp/ant-$ANT_VERSION
+ENV PATH $ANT_HOME/bin:$PATH
+
+RUN mkdir $ANT_HOME && \
+    wget -qO- "https://archive.apache.org/dist/ant/binaries/apache-ant-$ANT_VERSION-bin.tar.gz" | tar -zx --strip-components=1 -C $ANT_HOME
+
+COPY ./config /config
+
+ENV DSPACE_LOCAL_CONF /dspace/config/local.cfg
+RUN cp /config/local.cfg $DSPACE_LOCAL_CONF
+
+RUN ant init_installation update_configs update_code update_webapps
+
+EXPOSE 8080 8009
+VOLUME $DSPACE_ASSETSTORE
+
+ENTRYPOINT ["/scripts/run.sh"]

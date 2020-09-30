@@ -1,70 +1,58 @@
-FROM maven:3-jdk-8-alpine as maven
-
-ENV DSPACE_VERSION 6.3
-ENV MAVEN_OPTS "-Djava.awt.headless=true"
-
-COPY ./build /build
-
-RUN apk --no-cache add git && \
-  curl -OL https://github.com/DSpace/DSpace/releases/download/dspace-${DSPACE_VERSION}/dspace-${DSPACE_VERSION}-src-release.tar.gz && \
-  tar xvzpf dspace-${DSPACE_VERSION}-src-release.tar.gz && \
-  mv dspace-${DSPACE_VERSION}-src-release dspace-src && \
-  cd dspace-src && \
-  cp /build/default.license ./dspace/config/ && \
-  mvn -B $MAVEN_OPTS package
-
-
-FROM tomcat:8-jre8 as ant
+# Maven Builder.
+FROM maven:3-jdk-11 as build
 
 ARG TARGET_DIR=dspace-installer
+ARG DSPACE_REFSPEC=dspace-7.0-beta4.1
+ARG DSPACE_REFSPEC=HEAD
 
-COPY --from=maven /dspace-src/dspace/target/dspace-installer /dspace-src
+WORKDIR /app
+
+RUN useradd dspace \
+    && mkdir /home/dspace \
+    && chown -Rv dspace: /home/dspace
+
+RUN apt-get update && apt-get install git rsync && \
+  git clone --depth 1 --branch ${DSPACE_REFSPEC} https://github.com/DSpace/DSpace.git /tmpDSpace && \
+  rsync -a /tmpDSpace/ /app/
+
+COPY ./config/local.cfg /app/local.cfg
+RUN mkdir /install && \
+  chown -Rv dspace: /install && \
+  chown -Rv dspace: /app
+
+USER dspace
+RUN mvn package && \
+  mv /app/dspace/target/${TARGET_DIR}/* /install && \
+  mvn clean
+
+
+# Ant Commands.
+FROM tomcat:8-jdk11 as ant_build
+ARG TARGET_DIR=dspace-installer
+COPY --from=build /install /dspace-src
 WORKDIR /dspace-src
 
-# Create the initial install deployment using ANT
-ENV ANT_VERSION 1.10.7
+ENV ANT_VERSION 1.10.9
 ENV ANT_HOME /tmp/ant-$ANT_VERSION
 ENV PATH $ANT_HOME/bin:$PATH
 
 RUN mkdir $ANT_HOME && \
-    wget -qO- "https://archive.apache.org/dist/ant/binaries/apache-ant-$ANT_VERSION-bin.tar.gz" | tar -zx --strip-components=1 -C $ANT_HOME
+    wget -qO- "https://archive.apache.org/dist/ant/binaries/apache-ant-$ANT_VERSION-bin.tar.gz" | tar -zx --strip-components=1 -C $ANT_HOME && \
+    ant init_installation update_configs update_code update_webapps
 
-RUN ant init_installation update_configs update_code update_webapps update_solr_indexes
 
+# Deployment Image
+FROM tomcat:8-jdk11
+ENV DSPACE_INSTALL=/dspace
+COPY --from=ant_build /dspace $DSPACE_INSTALL
 
-FROM tomcat:8-jre8
-
-ENV DEPLOY_ENV prod
-ENV DSPACE_ASSETSTORE /assetstore
-ENV DSPACE_INSTALL /dspace
-ENV DSPACE_ROOT_WEBAPP xmlui
-ENV JAVA_OPTS -Xmx2000m
-ENV SOLR_DATASTORE /solrdata
-
-ENV DSPACE_BIN $DSPACE_INSTALL/bin/dspace
-ENV DSPACE_LOCAL_CONF $DSPACE_INSTALL/config/local.cfg
-
-COPY --from=ant /dspace $DSPACE_INSTALL
+COPY ./config/local.cfg $DSPACE_INSTALL/config/local.cfg
 COPY ./scripts /scripts
-COPY ./config /config
 
-RUN apt-get update && \
-  apt-get -y upgrade && \
-  apt-get install -y --no-install-recommends \
-    cron \
-    postgresql-client \
-    netcat \
-    gpg && \
-  apt-get autoremove -y && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* && \
-  cp /config/local.cfg $DSPACE_LOCAL_CONF && \
-  cp -r $DSPACE_INSTALL/webapps/solr $CATALINA_HOME/webapps/ && \
-  sed -i "s|DSPACE_INSTALL|${DSPACE_INSTALL}|g" /scripts/dspace.cron && cp /scripts/dspace.cron /etc/cron.d/dspace
+RUN apt-get update && apt-get --yes install netcat && \
+  ln -s $DSPACE_INSTALL/webapps/server /usr/local/tomcat/webapps/ROOT
 
 EXPOSE 8080 8009
-
-VOLUME $DSPACE_ASSETSTORE
-VOLUME $SOLR_DATASTORE
+ENV JAVA_OPTS=-Xmx4096m
 
 ENTRYPOINT ["/scripts/run.sh"]
