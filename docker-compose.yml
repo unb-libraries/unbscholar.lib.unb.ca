@@ -1,13 +1,29 @@
 version: '3.6'
 
 services:
+
   unbscholar.lib.unb.ca:
+    build:
+      context: frontend/
+    restart: always
+    container_name: unbscholar.lib.unb.ca
+    env_file:
+      - ./env/dspace.env
+    expose:
+      - "4000"
+    networks:
+      - unbscholar.lib.unb.ca
+    ports:
+      - "9988:4000"
+
+  unbscholar.dspace.lib.unb.ca:
     build:
       context: .
     restart: always
     env_file:
       - ./env/dspace.env
-    container_name: unbscholar.lib.unb.ca
+    expose:
+      - "8080"
     ports:
       - "9987:8080"
     networks:
@@ -19,6 +35,8 @@ services:
     restart: always
     env_file:
       - ./env/dspace.env
+    expose:
+      - "5432"
     networks:
       - unbscholar.lib.unb.ca
 
@@ -28,6 +46,8 @@ services:
     restart: always
     env_file:
       - ./env/dspace.env
+    expose:
+      - "8983"
     networks:
       - unbscholar.lib.unb.ca
     volumes:
