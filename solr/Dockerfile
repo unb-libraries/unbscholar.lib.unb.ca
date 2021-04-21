@@ -1,4 +1,4 @@
-FROM solr:8.4
+FROM solr:8.8
 MAINTAINER UNB Libraries <libsupport@unb.ca>
 
 LABEL ca.unb.lib.generator="solr" \
@@ -16,5 +16,6 @@ LABEL ca.unb.lib.generator="solr" \
 
 ENV TZ America/Moncton
 COPY ./scripts /scripts
+COPY ./data/cores /data
 
 ENTRYPOINT ["/scripts/run.sh"]

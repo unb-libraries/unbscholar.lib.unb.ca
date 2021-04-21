@@ -50,7 +50,6 @@ COPY ./scripts /scripts
 
 RUN apt-get update && apt-get --yes install netcat && \
   ln -s $DSPACE_INSTALL/webapps/server   /usr/local/tomcat/webapps/server
-#   ln -s $DSPACE_INSTALL/webapps/server /usr/local/tomcat/webapps/ROOT
 
 EXPOSE 8080 8009
 ENV JAVA_OPTS=-Xmx4096m
