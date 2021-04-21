@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-ant fresh_install
+
+/dspace/bin/dspace database migrate

@@ -6,5 +6,5 @@ do
    . "${i}"
  fi
 done
-/dspace/bin/dspace database migrate
+
 catalina.sh run
