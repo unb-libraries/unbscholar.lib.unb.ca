@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-# ant fresh_install
+ant fresh_install
