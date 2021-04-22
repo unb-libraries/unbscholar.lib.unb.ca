@@ -10,7 +10,7 @@ services:
     env_file:
       - ./env/dspace.env
     expose:
-      - "4000"
+      - "80"
     networks:
       - unbscholar.lib.unb.ca
     ports:
