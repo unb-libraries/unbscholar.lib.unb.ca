@@ -3,17 +3,12 @@ FROM node:12-alpine
 WORKDIR /app
 
 ARG DSPACE_REFSPEC=dspace-7.0-beta5
-
 ENV DSPACE_HOST 0.0.0.0
-
-COPY ./build/patches /patches
 
 RUN apk --no-cache add \
     git \
     rsync && \
   git clone --depth 1 --branch ${DSPACE_REFSPEC} https://github.com/DSpace/dspace-angular.git /tmpDSpace && \
-  cd /tmpDSpace && \
-  git apply /patches/add-disablehostcheck.patch && \
   rsync -a /tmpDSpace/ /app/
 
 EXPOSE 4000
