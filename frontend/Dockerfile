@@ -9,12 +9,10 @@ RUN apk --no-cache add \
     git \
     rsync && \
   git clone --depth 1 --branch ${DSPACE_REFSPEC} https://github.com/DSpace/dspace-angular.git /tmpDSpace && \
-  rsync -a /tmpDSpace/ /app/
+  rsync -a /tmpDSpace/ /app/ && \
+  yarn install --network-timeout 300000 && \
+  yarn run build:prod
 
 EXPOSE 4000
 
-# We run yarn install with an increased network timeout (5min) to avoid "ESOCKETTIMEDOUT" errors from hub.docker.com
-# See, for example https://github.com/yarnpkg/yarn/issues/5540
-RUN yarn install --network-timeout 300000 && \
-  yarn run build:prod
 CMD yarn run serve:ssr
