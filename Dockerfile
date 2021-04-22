@@ -42,7 +42,10 @@ RUN mkdir $ANT_HOME && \
 
 # Deployment Image
 FROM tomcat:8-jdk11
-ENV DSPACE_INSTALL=/dspace
+
+ENV DSPACE_INSTALL /dspace
+ENV DSPACE_BIN $DSPACE_INSTALL/bin/dspace
+
 COPY --from=ant_build /dspace $DSPACE_INSTALL
 
 COPY ./config/local.cfg $DSPACE_INSTALL/config/local.cfg
