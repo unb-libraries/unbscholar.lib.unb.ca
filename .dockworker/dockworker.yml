@@ -2,7 +2,7 @@ dockworker:
   version: '3.0'
   application:
     name: unbscholar.lib.unb.ca
-    finish_marker: 'Container startup time'
+    finish_marker: 'Listening at'
     project_prefix: SCHOLAR
     upstream_images:
       - maven:3-jdk-8-alpine

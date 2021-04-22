@@ -10,7 +10,7 @@ services:
     env_file:
       - ./env/dspace.env
     expose:
-      - "80"
+      - "4000"
     networks:
       - unbscholar.lib.unb.ca
     ports:
@@ -20,6 +20,7 @@ services:
     build:
       context: .
     restart: always
+    container_name: unbscholar.dspace.lib.unb.ca
     env_file:
       - ./env/dspace.env
     expose:
