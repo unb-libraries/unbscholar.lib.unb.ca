@@ -15,4 +15,9 @@ RUN apk --no-cache add \
 
 EXPOSE 4000
 
+ENV DSPACE_REST_HOST localhost
+ENV DSPACE_REST_PORT 9987
+ENV DSPACE_REST_NAMESPACE /server
+ENV DSPACE_REST_SSL false
+
 CMD yarn run serve:ssr
