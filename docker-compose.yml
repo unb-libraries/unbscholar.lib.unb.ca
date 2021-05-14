@@ -4,6 +4,9 @@ services:
 
   unbscholar.lib.unb.ca:
     build:
+      args:
+        DSPACE_REST_PORT: '8080'
+        DSPACE_REST_SSL: 'false'
       context: frontend/
     restart: always
     container_name: unbscholar.lib.unb.ca
