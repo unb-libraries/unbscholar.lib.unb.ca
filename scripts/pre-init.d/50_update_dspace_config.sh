@@ -13,8 +13,3 @@ sed -i "s|SOLR_PORT|${SOLR_PORT}|g" "${DSPACE_INSTALL}/config/local.cfg"
 sed -i "s|DSPACE_REST_NAMESPACE|${DSPACE_REST_NAMESPACE}|g" "${DSPACE_INSTALL}/config/local.cfg"
 sed -i "s|DSPACE_REST_PORT|${DSPACE_REST_PORT}|g" "${DSPACE_INSTALL}/config/local.cfg"
 sed -i "s|DSPACE_REST_HOST|${DSPACE_REST_HOST}|g" "${DSPACE_INSTALL}/config/local.cfg"
-
-cat "${DSPACE_INSTALL}/config/local.cfg"
-
-# Remove google analytics.
-# sed -i '/google-analytics/d' dspace.cfg

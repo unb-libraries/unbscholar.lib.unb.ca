@@ -33,7 +33,7 @@ services:
     networks:
       - unbscholar.lib.unb.ca
 
-  dspace-postgres-lib-unb-ca:
+  unbscholar.postgres.lib.unb.ca:
     build:
       context: postgres/
     restart: always
@@ -44,7 +44,7 @@ services:
     networks:
       - unbscholar.lib.unb.ca
 
-  dspace-solr-lib-unb-ca:
+  unbscholar.solr.lib.unb.ca:
     build:
       context: solr/
     restart: always
