@@ -12,6 +12,9 @@ dockworker:
     environments:
       - dev
       - prod
+    local:
+      localhost_hostnames:
+        - unbscholar.dspace.lib.unb.ca
   github:
     repo: unbscholar.lib.unb.ca
     owner: unb-libraries
