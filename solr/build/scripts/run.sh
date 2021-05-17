@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 for i in /scripts/pre-init.d/*sh
 do
  if [[ -e "${i}" ]]; then
@@ -7,4 +7,4 @@ do
  fi
 done
 
-catalina.sh run
+docker-entrypoint.sh solr-foreground

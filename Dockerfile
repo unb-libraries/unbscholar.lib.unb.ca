@@ -1,60 +1,41 @@
-# Maven Builder.
-FROM maven:3-jdk-11 as build
-
-ARG TARGET_DIR=dspace-installer
-ARG DSPACE_REFSPEC=dspace-7.0-beta5
-
+# Front-End
+FROM node:12-alpine
 WORKDIR /app
 
-RUN useradd dspace \
-    && mkdir /home/dspace \
-    && chown -Rv dspace: /home/dspace
+ARG DSPACE_REFSPEC=dspace-7.0-beta5
+ENV DSPACE_HOST 0.0.0.0
 
-RUN apt-get update && apt-get install git rsync && \
-  git clone --depth 1 --branch ${DSPACE_REFSPEC} https://github.com/DSpace/DSpace.git /tmpDSpace && \
-  rsync -a /tmpDSpace/ /app/
+ARG DSPACE_REST_HOST=unbscholar.dspace.lib.unb.ca
+ARG DSPACE_REST_NAMESPACE=/server
+ARG DSPACE_REST_PORT=80
+ARG DSPACE_REST_SSL=true
 
-COPY ./config/local.cfg /app/local.cfg
-RUN mkdir /install && \
-  chown -Rv dspace: /install && \
-  chown -Rv dspace: /app
+RUN apk --no-cache add \
+    git \
+    rsync && \
+  git clone --depth 1 --branch ${DSPACE_REFSPEC} https://github.com/DSpace/dspace-angular.git /tmpDSpace && \
+  rsync -a /tmpDSpace/ /app/ && \
+  yarn install --network-timeout 300000 && \
+  yarn run build:prod
 
-USER dspace
-RUN mvn package && \
-  mv /app/dspace/target/${TARGET_DIR}/* /install && \
-  mvn clean
+COPY build/scripts /scripts
+EXPOSE 4000
 
+CMD ["/scripts/run.sh"]
 
-# Ant Commands.
-FROM tomcat:8-jdk11 as ant_build
-ARG TARGET_DIR=dspace-installer
-COPY --from=build /install /dspace-src
-WORKDIR /dspace-src
-
-ENV ANT_VERSION 1.10.9
-ENV ANT_HOME /tmp/ant-$ANT_VERSION
-ENV PATH $ANT_HOME/bin:$PATH
-
-RUN mkdir $ANT_HOME && \
-    wget -qO- "https://archive.apache.org/dist/ant/binaries/apache-ant-$ANT_VERSION-bin.tar.gz" | tar -zx --strip-components=1 -C $ANT_HOME && \
-    ant init_installation update_configs update_code update_webapps
-
-
-# Deployment Image
-FROM tomcat:8-jdk11
-
-ENV DSPACE_INSTALL /dspace
-ENV DSPACE_BIN $DSPACE_INSTALL/bin/dspace
-
-COPY --from=ant_build /dspace $DSPACE_INSTALL
-
-COPY ./config/local.cfg $DSPACE_INSTALL/config/local.cfg
-COPY ./scripts /scripts
-
-RUN apt-get update && apt-get --yes install netcat && \
-  ln -s $DSPACE_INSTALL/webapps/server   /usr/local/tomcat/webapps/server
-
-EXPOSE 8080 8009
-ENV JAVA_OPTS=-Xmx4096m
-
-ENTRYPOINT ["/scripts/run.sh"]
+# Metadata
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+LABEL ca.unb.lib.generator="nginx" \
+  com.microscaling.docker.dockerfile="/Dockerfile" \
+  com.microscaling.license="MIT" \
+  org.label-schema.build-date=$BUILD_DATE \
+  org.label-schema.description="unbscholar.lib.unb.ca is an institutional repository initiative of UNB Libraries intended to collect, preserve, showcase, and promote the open access scholarly output of the UNB community." \
+  org.label-schema.name="unbscholar.lib.unb.ca" \
+  org.label-schema.schema-version="1.0" \
+  org.label-schema.vcs-ref=$VCS_REF \
+  org.label-schema.vcs-url="https://github.com/unb-libraries/unbscholar.lib.unb.ca" \
+  org.label-schema.vendor="University of New Brunswick Libraries" \
+  org.label-schema.version=$VERSION \
+  org.opencontainers.image.source="https://github.com/unb-libraries/unbscholar.lib.unb.ca"

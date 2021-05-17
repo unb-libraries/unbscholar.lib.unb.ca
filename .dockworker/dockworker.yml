@@ -5,8 +5,7 @@ dockworker:
     finish_marker: 'Listening at'
     project_prefix: SCHOLAR
     upstream_images:
-      - maven:3-jdk-8-alpine
-      - tomcat:8-jre8
+      - node:12-alpine
     uuid: 3102
   deployment:
     environments:
@@ -22,6 +21,6 @@ dockworker:
     push_branches:
       - dev
       - prod
-    name: unblibraries/unbscholar.lib.unb.ca
+    name: ghcr.io/unb-libraries/unbscholar.lib.unb.ca
     date_tag_image: true
-    repository: dockercloud
+    repository: ghcr

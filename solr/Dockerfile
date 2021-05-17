@@ -1,21 +1,5 @@
-FROM solr:8.8
-MAINTAINER UNB Libraries <libsupport@unb.ca>
+FROM ghcr.io/unb-libraries/unbscholar.solr.lib.unb.ca:prod
 
-LABEL ca.unb.lib.generator="solr" \
-  com.microscaling.docker.dockerfile="/Dockerfile" \
-  com.microscaling.license="MIT" \
-  org.label-schema.build-date=$BUILD_DATE \
-  org.label-schema.description="unbscholar.solr.lib.unb.ca is the solr application serving drupal instances at UNB Libraries." \
-  org.label-schema.name="unbscholar.solr.lib.unb.ca" \
-  org.label-schema.schema-version="1.0" \
-  org.label-schema.vcs-ref=$VCS_REF \
-  org.label-schema.vcs-url="https://github.com/unb-libraries/unbscholar.solr.lib.unb.ca" \
-  org.label-schema.vendor="University of New Brunswick Libraries" \
-  org.label-schema.version=$VERSION \
-  org.opencontainers.image.source="https://github.com/unb-libraries/unbscholar.solr.lib.unb.ca"
+COPY build/scripts/pre-init.d/40_create_solr_cores.sh /scripts/pre-init.d/
+COPY build/data /data
 
-ENV TZ America/Moncton
-COPY ./scripts /scripts
-COPY ./data/cores /data
-
-ENTRYPOINT ["/scripts/run.sh"]
