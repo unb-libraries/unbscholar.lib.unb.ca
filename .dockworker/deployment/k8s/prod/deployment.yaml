@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: angular
+    appMajor: "1"
+    instance: unbscholar.lib.unb.ca
+    tier: backend
+    uri: unbscholar.lib.unb.ca
+    vcsOwner: unb-libraries
+    vcsRepository: unbscholar.lib.unb.ca
+    vcsRef: prod
+  name: unbscholar-lib-unb-ca
+  namespace: prod
+spec:
+  selector:
+    matchLabels:
+      uri: unbscholar.lib.unb.ca
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: angular
+        appMajor: "1"
+        instance: unbscholar.lib.unb.ca
+        tier: backend
+        uri: unbscholar.lib.unb.ca
+        vcsOwner: unb-libraries
+        vcsRepository: unbscholar.lib.unb.ca
+        vcsRef: prod
+    spec:
+      nodeSelector:
+        deployenv: prod
+      containers:
+        -
+          name: unbscholar-lib-unb-ca
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 4000
+            initialDelaySeconds: 65
+            timeoutSeconds: 3
+            periodSeconds: 15
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 4000
+            initialDelaySeconds: 130
+            timeoutSeconds: 3
+            periodSeconds: 15
+          env:
+            -
+              name: DEPLOY_ENV
+              value: prod
+          image: "||DEPLOYMENTIMAGE||"
+          imagePullPolicy: Always
+          ports:
+            -
+              containerPort: 4000
+      priorityClassName: high-priority-services
+      imagePullSecrets:
+        -
+          name: github-container-registry-auth
+      restartPolicy: Always
