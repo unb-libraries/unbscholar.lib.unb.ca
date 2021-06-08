@@ -4,6 +4,7 @@ WORKDIR /app
 
 ARG DSPACE_REFSPEC=dspace-7.0-beta5
 ENV DSPACE_HOST 0.0.0.0
+ENV DSPACE_SSL true
 
 ARG DSPACE_REST_HOST=unbscholar.dspace.lib.unb.ca
 ARG DSPACE_REST_NAMESPACE=/server
