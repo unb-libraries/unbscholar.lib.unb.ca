@@ -32,7 +32,7 @@ services:
     networks:
       - unbscholar.lib.unb.ca
 
-  unbscholar-postgres-lib-unb-ca:
+  unbscholar.postgres.lib.unb.ca:
     build:
       context: postgres/
     restart: always
