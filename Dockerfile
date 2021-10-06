@@ -2,7 +2,7 @@
 FROM node:12-alpine
 WORKDIR /app
 
-ARG DSPACE_REFSPEC=dspace-7.0-beta5
+ARG DSPACE_REFSPEC=dspace-7.0
 ENV DSPACE_HOST 0.0.0.0
 
 ARG DSPACE_REST_HOST=unbscholar.dspace.lib.unb.ca
