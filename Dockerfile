@@ -10,15 +10,20 @@ ARG DSPACE_REST_NAMESPACE=/server
 ARG DSPACE_REST_PORT=443
 ARG DSPACE_REST_SSL=true
 
+COPY build /build
 RUN apk --no-cache add \
     git \
-    rsync && \
+    postfix \
+    rsync \
+    util-linux && \
+  mv /build/scripts /scripts && \
+  cat /build/config/postfix/main.cf >> /etc/postfix/main.cf && \
+  postfix start && \
   git clone --depth 1 --branch ${DSPACE_REFSPEC} https://github.com/DSpace/dspace-angular.git /tmpDSpace && \
   rsync -a /tmpDSpace/ /app/ && \
   yarn install --network-timeout 300000 && \
   yarn run build:prod
 
-COPY build/scripts /scripts
 EXPOSE 4000
 
 CMD ["/scripts/run.sh"]
