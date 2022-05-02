@@ -1,12 +1,11 @@
 services:
-
   unbscholar.lib.unb.ca:
     build:
       args:
         DSPACE_REST_PORT: '8080'
         DSPACE_REST_SSL: 'false'
       context: .
-    restart: always
+    restart: unless-stopped
     container_name: unbscholar.lib.unb.ca
     env_file:
       - ./env/dspace.env
@@ -16,11 +15,10 @@ services:
       - unbscholar.lib.unb.ca
     ports:
       - "9988:4000"
-
   unbscholar.dspace.lib.unb.ca:
     build:
       context: dspace/
-    restart: always
+    restart: unless-stopped
     env_file:
       - ./env/dspace.env
     expose:
@@ -29,29 +27,26 @@ services:
       - "8080:8080"
     networks:
       - unbscholar.lib.unb.ca
-
   unbscholar.postgres.lib.unb.ca:
     build:
       context: postgres/
-    restart: always
+    restart: unless-stopped
     env_file:
       - ./env/dspace.env
     expose:
       - "5432"
     networks:
       - unbscholar.lib.unb.ca
-
   unbscholar-solr-lib-unb-ca:
     build:
       context: solr/
-    restart: always
+    restart: unless-stopped
     env_file:
       - ./env/dspace.env
     expose:
       - "8080"
     networks:
       - unbscholar.lib.unb.ca
-
 networks:
   unbscholar.lib.unb.ca:
     name: unbscholar.lib.unb.ca
