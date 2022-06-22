@@ -60,7 +60,7 @@ spec:
               value: prod
             -
               name: DSPACE_REST_HOST
-              value: unbscholar-dspace-lib-unb-ca
+              value: unbscholar.dspace.lib.unb.ca
             -
               name: DSPACE_REST_PORT
               value: '8080'
