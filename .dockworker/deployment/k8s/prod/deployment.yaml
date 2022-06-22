@@ -63,7 +63,7 @@ spec:
               value: unbscholar.dspace.lib.unb.ca
             -
               name: DSPACE_REST_PORT
-              value: '8080'
+              value: '443'
           image: "||DEPLOYMENTIMAGE||"
           imagePullPolicy: Always
           ports:
