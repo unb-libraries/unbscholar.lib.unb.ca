@@ -5,6 +5,9 @@ dockworker:
     finish_marker: 'Listening at'
     project_prefix: SCHOLAR
     upstream_images:
+      - ghcr.io/unb-libraries/unbscholar.dspace.lib.unb.ca:prod
+      - ghcr.io/unb-libraries/unbscholar.postgres.lib.unb.ca:prod
+      - ghcr.io/unb-libraries/unbscholar.solr.lib.unb.ca:prod
       - node:12-alpine
     uuid: 3102
   deployment:
