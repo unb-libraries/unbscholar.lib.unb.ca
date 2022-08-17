@@ -3,9 +3,8 @@ ui:
   host: localhost
   port: 4000
   nameSpace: /
-
 rest:
-  ssl: true
+  ssl: false
   host: local-unbscholar.dspace.lib.unb.ca
   port: 9998
   nameSpace: /server
