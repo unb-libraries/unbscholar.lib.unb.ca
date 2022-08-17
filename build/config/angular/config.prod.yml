@@ -1,0 +1,10 @@
+ui:
+  ssl: false
+  host: unbscholar.lib.unb.ca
+  port: 443
+  nameSpace: /
+rest:
+  ssl: true
+  host: unbscholar.dspace.lib.unb.ca
+  port: 443
+  nameSpace: /server
