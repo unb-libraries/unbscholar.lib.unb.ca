@@ -8,3 +8,5 @@ rest:
   host: unbscholar.dspace.lib.unb.ca
   port: 443
   nameSpace: /server
+themes:
+  - name: 'custom'

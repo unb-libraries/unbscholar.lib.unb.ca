@@ -16,7 +16,6 @@ dockworker:
     local:
       localhost_hostnames:
         - local-unbscholar.dspace.lib.unb.ca
-        - local-unbscholar.lib.unb.ca
   github:
     repo: unbscholar.lib.unb.ca
     owner: unb-libraries
