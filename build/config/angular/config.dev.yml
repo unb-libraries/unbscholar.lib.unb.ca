@@ -5,7 +5,7 @@ ui:
   nameSpace: /
 rest:
   ssl: false
-  host: local-unbscholar.dspace.lib.unb.ca
+  host: localhost
   port: 9989
   nameSpace: /server
 themes:
