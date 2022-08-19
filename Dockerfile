@@ -1,14 +1,9 @@
 # Front-End
-FROM node:12-alpine
+FROM node:14-alpine
 WORKDIR /app
 
+ARG BUILD_CMD=yarn run build:prod
 ARG DSPACE_REFSPEC=dspace-7.2
-ENV DSPACE_HOST 0.0.0.0
-
-ARG DSPACE_REST_HOST=unbscholar.dspace.lib.unb.ca
-ARG DSPACE_REST_NAMESPACE=/server
-ARG DSPACE_REST_PORT=443
-ARG DSPACE_REST_SSL=true
 
 COPY build /build
 RUN apk --no-cache add \
@@ -17,12 +12,9 @@ RUN apk --no-cache add \
     rsync \
     util-linux && \
   mv /build/scripts /scripts && \
-  cat /build/config/postfix/main.cf >> /etc/postfix/main.cf && \
-  postfix start && \
-  git clone --depth 1 --branch ${DSPACE_REFSPEC} https://github.com/DSpace/dspace-angular.git /tmpDSpace && \
-  rsync -a /tmpDSpace/ /app/ && \
-  yarn install --network-timeout 300000 && \
-  yarn run build:prod
+  /scripts/startPostfix.sh && \
+  /scripts/deployAngularAssets.sh && \
+  /scripts/buildAngularApp.sh
 
 EXPOSE 4000
 
@@ -32,7 +24,7 @@ CMD ["/scripts/run.sh"]
 ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
-LABEL ca.unb.lib.generator="nginx" \
+LABEL ca.unb.lib.generator="angular" \
   com.microscaling.docker.dockerfile="/Dockerfile" \
   com.microscaling.license="MIT" \
   org.label-schema.build-date=$BUILD_DATE \

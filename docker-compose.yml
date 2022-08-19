@@ -2,13 +2,16 @@ services:
   unbscholar.lib.unb.ca:
     build:
       args:
-        DSPACE_REST_PORT: '8080'
-        DSPACE_REST_SSL: 'false'
+        BUILD_CMD: ''
+        NODE_ENV: development
       context: .
     restart: unless-stopped
     container_name: unbscholar.lib.unb.ca
     env_file:
-      - ./env/dspace.env
+      - env/common.env
+      - env/angular.env
+    volumes:
+       - ./build/src:/build/src
     expose:
       - "4000"
     networks:
@@ -20,19 +23,21 @@ services:
       context: dspace/
     restart: unless-stopped
     env_file:
-      - ./env/dspace.env
+      - env/common.env
+      - env/dspace.env
     expose:
       - "8080"
     ports:
-      - "8080:8080"
+      - "9989:8080"
     networks:
       - unbscholar.lib.unb.ca
-  unbscholar.postgres.lib.unb.ca:
+  unbscholar-postgres-lib-unb-ca:
     build:
       context: postgres/
     restart: unless-stopped
     env_file:
-      - ./env/dspace.env
+      - ./env/common.env
+      - ./env/postgres.env
     expose:
       - "5432"
     networks:
@@ -42,11 +47,12 @@ services:
       context: solr/
     restart: unless-stopped
     env_file:
-      - ./env/dspace.env
+      - env/common.env
     expose:
-      - "8080"
+      - "8983"
     networks:
       - unbscholar.lib.unb.ca
+
 networks:
   unbscholar.lib.unb.ca:
     name: unbscholar.lib.unb.ca

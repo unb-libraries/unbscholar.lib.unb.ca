@@ -2,7 +2,7 @@ dockworker:
   version: '5'
   application:
     name: unbscholar.lib.unb.ca
-    finish_marker: 'Listening at'
+    finish_marker: 'Angular Live Development Server is listening'
     project_prefix: SCHOLAR
     upstream_images:
       - ghcr.io/unb-libraries/unbscholar.dspace.lib.unb.ca:prod
@@ -15,7 +15,7 @@ dockworker:
       - prod
     local:
       localhost_hostnames:
-        - unbscholar.dspace.lib.unb.ca
+        - local-unbscholar.dspace.lib.unb.ca
   github:
     repo: unbscholar.lib.unb.ca
     owner: unb-libraries
