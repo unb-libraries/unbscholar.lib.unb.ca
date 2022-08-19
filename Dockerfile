@@ -25,7 +25,7 @@ FROM ghcr.io/unb-libraries/nginx:2.x as prod
 MAINTAINER UNB Libraries <libsupport@unb.ca>
 
 # Add built content.
-ENV APP_WEBROOT /app/html/browser
+ENV APP_WEBROOT /app/html/server
 COPY --from=builder ./app/dist /app/html
 
 # Container metadata.
