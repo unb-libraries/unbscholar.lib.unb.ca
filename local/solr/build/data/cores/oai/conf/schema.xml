@@ -107,7 +107,7 @@
       </analyzer>
     </fieldType>
 
-    <!-- UUID support -->
+    <!-- UUID local-support -->
     <fieldType name="uuid" class="solr.UUIDField" indexed="true" />
 
     <!-- These fields are ignored -->

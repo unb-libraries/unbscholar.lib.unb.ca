@@ -5,6 +5,9 @@
 
 This repository contains the assets used to test, build, and deploy the unbscholar.lib.unb.ca application.
 
+## Documentation
+Documentation for this project is available [in the documentation folder](./documentation/README.md "Project Documentation").
+
 ## Deploy this Application Yourself!
 Local deployment, development and testing of unbscholar.lib.unb.ca is easy, as we leverage [dockworker](https://github.com/unb-libraries/dockworker), our unified framework of [Robo](https://robo.li/) commands that streamline local development of our application on Linux or OSX.
 
@@ -30,6 +33,7 @@ Run ```vendor/bin/dockworker``` to list available dockworker commands for this a
 This application was created at [![UNB Libraries](https://github.com/unb-libraries/assets/raw/master/unblibbadge.png "UNB Libraries")](https://lib.unb.ca) by the following humans:
 
 <a href="https://github.com/JacobSanford"><img src="https://avatars.githubusercontent.com/u/244894?v=3" title="Jacob Sanford" width="128" height="128"></a>
+<a href="https://github.com/patschilf"><img src="https://avatars.githubusercontent.com/u/46682967?v=3" title="patschilf" width="128" height="128"></a>
 
 ## License
 - As part of our 'open' ethos, UNB Libraries licenses its applications and workflows to be freely available to all whenever possible.

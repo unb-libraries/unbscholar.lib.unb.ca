@@ -21,7 +21,7 @@ services:
       - "9988:4000"
   unbscholar.dspace.lib.unb.ca:
     build:
-      context: dspace/
+      context: local/dspace/
     restart: unless-stopped
     env_file:
       - env/common.env
@@ -34,7 +34,7 @@ services:
       - unbscholar.lib.unb.ca
   unbscholar-postgres-lib-unb-ca:
     build:
-      context: postgres/
+      context: local/postgres/
     restart: unless-stopped
     env_file:
       - ./env/common.env
@@ -45,7 +45,7 @@ services:
       - unbscholar.lib.unb.ca
   unbscholar-solr-lib-unb-ca:
     build:
-      context: solr/
+      context: local/solr/
     restart: unless-stopped
     env_file:
       - env/common.env
