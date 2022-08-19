@@ -12,4 +12,5 @@ do
   fi
 done
 
+sed -i "s|ng serve --configuration|ng serve --host $DSPACE_UI_HOST --port $DSPACE_UI_PORT --configuration|g" ./package.json
 yarn start:dev

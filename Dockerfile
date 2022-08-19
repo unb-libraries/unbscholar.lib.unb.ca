@@ -1,10 +1,10 @@
 FROM node:14-alpine as builder
 MAINTAINER UNB Libraries <libsupport@unb.ca>
 
-WORKDIR /app
-
 ARG BUILD_CMD='yarn run build:prod'
-ARG DSPACE_REFSPEC=dspace-7.2
+ARG DSPACE_REFSPEC=dspace-7.3
+
+WORKDIR /app
 
 COPY build /build
 RUN apk --no-cache add \
