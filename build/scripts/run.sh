@@ -12,8 +12,4 @@ do
   fi
 done
 
-if [ "$DEPLOY_ENV" = "local" ]; then
-  yarn start:dev
-else
-  yarn run serve:ssr
-fi
+yarn start:dev
