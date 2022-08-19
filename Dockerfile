@@ -2,7 +2,7 @@
 FROM node:14-alpine
 WORKDIR /app
 
-ARG BUILD_CMD=yarn run build:prod
+ARG BUILD_CMD='yarn run build:prod'
 ARG DSPACE_REFSPEC=dspace-7.2
 
 COPY build /build
