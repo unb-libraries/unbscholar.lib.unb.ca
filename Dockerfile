@@ -30,7 +30,7 @@ CMD ["/scripts/run.sh"]
 ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
-LABEL ca.unb.lib.generator="nginx" \
+LABEL ca.unb.lib.generator="angular" \
   com.microscaling.docker.dockerfile="/Dockerfile" \
   com.microscaling.license="MIT" \
   org.label-schema.build-date=$BUILD_DATE \

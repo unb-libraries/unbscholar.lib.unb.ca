@@ -58,12 +58,6 @@ spec:
             -
               name: DEPLOY_ENV
               value: prod
-            -
-              name: DSPACE_REST_HOST
-              value: unbscholar.dspace.lib.unb.ca
-            -
-              name: DSPACE_REST_PORT
-              value: '443'
           image: "||DEPLOYMENTIMAGE||"
           imagePullPolicy: Always
           ports:
