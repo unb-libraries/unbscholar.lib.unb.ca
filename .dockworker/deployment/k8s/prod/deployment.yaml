@@ -43,14 +43,14 @@ spec:
           readinessProbe:
             httpGet:
               path: /
-              port: 80
+              port: 4000
             initialDelaySeconds: 65
             timeoutSeconds: 3
             periodSeconds: 15
           livenessProbe:
             httpGet:
               path: /
-              port: 80
+              port: 4000
             initialDelaySeconds: 130
             timeoutSeconds: 3
             periodSeconds: 15
@@ -62,7 +62,7 @@ spec:
           imagePullPolicy: Always
           ports:
             -
-              containerPort: 80
+              containerPort: 4000
       priorityClassName: high-priority-services
       imagePullSecrets:
         -

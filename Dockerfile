@@ -21,12 +21,19 @@ EXPOSE 4000
 CMD ["/scripts/run.sh"]
 
 
-FROM ghcr.io/unb-libraries/nginx:2.x as prod
+FROM node:14-alpine as prod
+WORKDIR /app
 MAINTAINER UNB Libraries <libsupport@unb.ca>
 
-# Add built content.
-ENV APP_WEBROOT /app/html/server
-COPY --from=builder ./app/dist /app/html
+# Assemble application and config.
+COPY --from=builder ./app/dist /app/dist
+COPY ./build/config/angular/config.prod.yml /app/config/config.prod.yml
+RUN touch /app/dist/browser/assets/config.json && chown node:node /app/dist/browser/assets/config.json
+EXPOSE 4000
+
+USER node
+ENTRYPOINT ["/usr/local/bin/node"]
+CMD ["./dist/server/main.js"]
 
 # Container metadata.
 ARG BUILD_DATE
