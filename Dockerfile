@@ -1,5 +1,6 @@
-# Front-End
 FROM node:14-alpine as builder
+MAINTAINER UNB Libraries <libsupport@unb.ca>
+
 WORKDIR /app
 
 ARG BUILD_CMD='yarn run build:prod'
@@ -17,21 +18,21 @@ RUN apk --no-cache add \
   /scripts/buildAngularApp.sh
 
 EXPOSE 4000
-
-CMD ["/scripts/run.sh"]
+ENTRYPOINT ["/scripts/run.sh"]
 
 
 FROM node:14-alpine as prod
-WORKDIR /app
 MAINTAINER UNB Libraries <libsupport@unb.ca>
+
+WORKDIR /app
 
 # Assemble application and config.
 COPY --from=builder ./app/dist /app/dist
 COPY ./build/config/angular/config.prod.yml /app/config/config.prod.yml
 RUN touch /app/dist/browser/assets/config.json && chown node:node /app/dist/browser/assets/config.json
-EXPOSE 4000
-
 USER node
+
+EXPOSE 4000
 ENTRYPOINT ["/usr/local/bin/node"]
 CMD ["./dist/server/main.js"]
 
