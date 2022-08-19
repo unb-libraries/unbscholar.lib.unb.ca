@@ -1,5 +1,5 @@
 # Front-End
-FROM node:14-alpine
+FROM node:14-alpine as builder
 WORKDIR /app
 
 ARG BUILD_CMD='yarn run build:prod'
@@ -20,7 +20,15 @@ EXPOSE 4000
 
 CMD ["/scripts/run.sh"]
 
-# Metadata
+
+FROM ghcr.io/unb-libraries/nginx:2.x as prod
+MAINTAINER UNB Libraries <libsupport@unb.ca>
+
+# Add built content.
+ENV APP_WEBROOT /app/html/browser/
+COPY --from=builder ./app/dist /app/html
+
+# Container metadata.
 ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION

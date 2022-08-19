@@ -5,6 +5,7 @@ services:
         BUILD_CMD: ''
         NODE_ENV: development
       context: .
+      target: builder
     restart: unless-stopped
     container_name: unbscholar.lib.unb.ca
     env_file:
