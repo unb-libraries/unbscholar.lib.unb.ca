@@ -1,7 +1,7 @@
 {
   // DSpace default: "All of DSpace"
-  "menu.section.browse_global": "Browse DSpace",
-  "nav.browse.header": "Browse DSpace",
+  "menu.section.browse_global": "Browse UNB Scholar",
+  "nav.browse.header": "Browse",
 
   // DSpace default: "DSpace Angular :: "
   "repository.title.prefix": "DSpace :: ",
