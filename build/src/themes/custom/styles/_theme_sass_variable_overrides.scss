@@ -14,9 +14,12 @@
 // $yellow: #ec9433 !default;
 // $red:    #CF4444 !default;
 // $dark:   darken($blue, 17%) !default;
+$scholar-blue: #00607a;
+$scholar-red: #900;
 //
-// $theme-colors: (
-//   primary: $blue,
+$theme-colors: (
+   primary: $scholar-red,
+   scholar: $scholar-blue,
 //   secondary: $gray-700,
 //   success: $green,
 //   info: $cyan,
@@ -24,6 +27,6 @@
 //   danger: $red,
 //   light: $gray-100,
 //   dark: $dark
-// ) !default;
+) !default;
 //
-// $link-color: map-get($theme-colors, info) !default;
+$link-color: map-get($theme-colors, scholar) !default;
