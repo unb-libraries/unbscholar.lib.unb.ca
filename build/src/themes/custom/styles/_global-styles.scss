@@ -2,3 +2,36 @@
 
 // imports the base global style
 @import '../../../styles/_global-styles.scss';
+
+a {
+  text-decoration: underline;
+  text-decoration-color: $scholar-link-color-underline;
+  transition: all 0.3s ease-in-out;
+
+  &:focus,
+  &:hover {
+    color: $scholar-link-color-hover;
+    text-decoration: underline;
+    text-decoration-color: $scholar-link-color-hover;
+  }
+}
+
+.header a {
+  text-decoration: none;
+
+  &:focus,
+  &:hover {
+    color: $scholar-header-icon-color-hover!important;
+  }
+}
+
+#collapsingNav a {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: $scholar-link-color-hover;
+  }
+}
