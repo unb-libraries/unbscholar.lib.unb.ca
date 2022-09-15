@@ -8,7 +8,10 @@ a {
   text-decoration-color: $scholar-link-color-underline;
   transition: all 0.3s ease-in-out;
 
-  &:focus,
+  &:focus {
+    color: $scholar-link-color-hover;
+    text-decoration-color: transparent;
+  }
   &:hover {
     color: $scholar-link-color-hover;
     text-decoration: underline;
@@ -16,22 +19,44 @@ a {
   }
 }
 
-.header a {
-  text-decoration: none;
+// DS Themed Header.
+header {
+  a {
+    text-decoration: none;
 
-  &:focus,
-  &:hover {
-    color: $scholar-header-icon-color-hover!important;
+    &:focus,
+    &:hover {
+      color: $scholar-header-icon-color-hover !important;
+    }
+  }
+
+  input[name="query"] {
+    opacity: inherit!important;
+    border: none;
   }
 }
 
-#collapsingNav a {
-  text-decoration: underline;
-  text-decoration-color: transparent;
+// DS Themed Navbar.
+#collapsingNav {
+  a {
+    &:focus {
+      color: $scholar-link-color-hover;
+      text-decoration-color: transparent;
+    }
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: $scholar-link-color-hover;
+    }
+  }
+}
 
-  &:focus,
-  &:hover {
-    text-decoration: underline;
-    text-decoration-color: $scholar-link-color-hover;
+// DS Themed Home News.
+.jumbotron {
+  a {
+    &:focus {
+      color: $scholar-link-color-hover;
+      text-decoration: underline;
+      text-decoration-color: transparent;
+    }
   }
 }

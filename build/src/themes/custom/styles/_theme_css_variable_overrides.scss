@@ -3,6 +3,7 @@ $scholar-link-color: $scholar-blue;
 $scholar-link-color-hover: $scholar-red;
 $scholar-link-color-underline: rgb(0 96 122 / 20%);
 $scholar-header-icon-color-hover: rgb(0 96 122 / 65%);
+$scholar-jumbotron-link-color: #00546B;
 
 :root {
   //--ds-header-logo-height: 80px;
@@ -15,4 +16,5 @@ $scholar-header-icon-color-hover: rgb(0 96 122 / 65%);
   --ds-home-news-link-hover-color: #{$scholar-link-color-hover};
   --ds-header-icon-color: #{$scholar-link-color};
   --ds-header-icon-color-hover: #{$scholar-header-icon-color-hover};
+  --ds-home-news-link-color: #{$scholar-jumbotron-link-color};
 }
