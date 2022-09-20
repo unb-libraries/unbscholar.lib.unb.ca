@@ -62,8 +62,9 @@ header {
 }
 
 // DS Translatable.
-button {
+button.expandButton {
   &:focus {
+    color: $scholar-header-icon-color-hover;
     outline: 1px auto rgb(16, 16, 16);
     outline-offset: 1px;
     text-decoration: none;
