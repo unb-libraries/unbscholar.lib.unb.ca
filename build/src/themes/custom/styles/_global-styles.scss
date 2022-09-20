@@ -60,3 +60,12 @@ header {
     }
   }
 }
+
+// DS Translatable.
+button {
+  &:focus {
+    outline: 1px auto rgb(16, 16, 16);
+    outline-offset: 1px;
+    text-decoration: none;
+  }
+}
