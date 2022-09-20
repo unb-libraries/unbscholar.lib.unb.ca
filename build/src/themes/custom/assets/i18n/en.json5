@@ -5,4 +5,8 @@
 
   // DSpace default: "DSpace Angular :: "
   "repository.title.prefix": "DSpace :: ",
+
+  // Add Show more/less item tranlations,
+  "item.truncatable-part.show-more": "Show more",
+  "item.truncatable-part.show-less": "Collapse"
 }
