@@ -74,7 +74,34 @@ header.header {
 
     &:focus,
     &:hover {
-      color: $scholar-header-icon-color-hover !important;
+      color: $scholar-link-color-hover!important;
+    }
+
+    &.dropdown-toggle {
+      text-decoration: underline;
+      text-decoration-color: transparent;
+
+      &:hover {
+        text-decoration-color: $scholar-link-color-hover;
+      }
+    }
+  }
+
+  // DS Login container.
+  .login-container {
+    a {
+      &:focus {
+        color: $scholar-link-color-hover;
+        text-decoration-color: transparent;
+      }
+      &:hover {
+        color: $scholar-link-color-hover!important;
+        text-decoration: underline;
+        text-decoration-color: $scholar-link-color-hover;
+      }
+      &:active {
+        background-color: inherit ;
+      }
     }
   }
 
@@ -85,8 +112,11 @@ header.header {
 }
 
 // DS Themed Navbar.
-#collapsingNav {
+#collapsingNav,
+#collapsingNav .dropdown .dropdown-menu {
   a {
+    text-decoration: none;
+
     &:focus {
       color: $scholar-link-color-hover;
       text-decoration-color: transparent;
@@ -95,6 +125,7 @@ header.header {
       text-decoration: underline;
       text-decoration-color: $scholar-link-color-hover;
     }
+
   }
 }
 
@@ -114,7 +145,7 @@ footer {
   a {
     &:focus {
       text-decoration: underline;
-      text-decoration-color: transparent;
+      text-decoration-color: transparent!important;
     }
     &:hover {
       text-decoration: underline;
