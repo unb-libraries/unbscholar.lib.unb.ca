@@ -17,6 +17,54 @@ a {
     text-decoration: underline;
     text-decoration-color: $scholar-link-color-hover;
   }
+
+  // Remove underline re: button / badge link.
+  &.btn,
+  &.badge {
+    text-decoration: none;
+  }
+}
+
+// Disabled buttons.
+button[disabled] {
+  opacity: .7;
+  text-decoration: line-through;
+
+  &:hover {
+    text-decoration: line-through;
+  }
+}
+
+// DS Search Facets i.e. Filters.
+button.filter-name,
+.filters a {
+  text-decoration: none;
+
+  &:focus,
+  &:hover {
+    color: $scholar-link-color-hover;
+  }
+}
+
+// DS Button secondary options.
+#search-sidebar-content a.btn-secondary,
+button.dropdown-toggle {
+  &:focus,
+  &:hover {
+    background-color: $scholar-link-color-hover;
+  }
+}
+
+// DS Search Scope button.
+.modal-body {
+  button.border-0 {
+    border: 1px solid transparent!important;
+
+    &:focus,
+    &:hover {
+      border: 1px solid rgba(0, 0, 0, 0.125) !important;
+    }
+  }
 }
 
 // DS Themed Header.
