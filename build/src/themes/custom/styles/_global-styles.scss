@@ -1,6 +1,8 @@
 // Add any global css for the theme here
 
-// imports the base global style
+// Font Awesome 4.x CDN.
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+// Imports the base global style
 @import '../../../styles/_global-styles.scss';
 
 a {
