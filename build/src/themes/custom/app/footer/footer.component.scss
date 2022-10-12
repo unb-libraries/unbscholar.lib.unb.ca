@@ -1,0 +1,93 @@
+.site-footer {
+  background: #393e44;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  a.nav-link {
+    color: $white;
+    border: none;
+    display: inline-block;
+    line-height: 190%;
+    padding: 0;
+    text-decoration: none;
+    width: 100%;
+
+    &:focus,
+    &:hover {
+      background: #343a40;
+      color: #fec700;
+    }
+  }
+
+  h2 {
+    color: #f4f4f4;
+    font-size: 1.1em;
+  }
+
+  & > div:not(.footer-middle) a.nav-link::after {
+    color: rgb(216, 46, 59);
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f105";
+    margin: 0 0 0 4px;
+    opacity: .9;
+    padding-right: 2px;
+    vertical-align: middle;
+  }
+
+  .block {
+    border: none;
+    margin: 0;
+  }
+
+  .footer-top {
+    transition: all 0.35s ease-in;
+
+    ul {
+      display: block;
+      margin-left: 0;
+      margin-bottom: 1em;
+    }
+
+    .unb-logo {
+      text-align: right;
+      @media (max-width: 991px) {
+        width: 100%;
+      }
+
+      a {
+        display: block;
+
+        img {
+          border-bottom: 2px outset transparent;
+          transition: border-color .25s;
+          max-width: 200px;
+        }
+
+        &:focus img,
+        &:hover img {
+          border-bottom: 2px outset #fec700;
+        }
+      }
+    }
+  }
+
+  .footer-middle {
+    h2, ul {
+      display: inline-flex;
+    }
+  }
+
+  .footer-bottom {
+    background: #1B2125;
+
+    a.nav-link {
+      &:hover {
+        background: #272B2F;
+      }
+    }
+
+    li:not(:last-child) {
+      margin-right: 1em;
+    }
+  }
+}
