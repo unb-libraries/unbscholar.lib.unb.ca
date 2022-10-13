@@ -6,7 +6,10 @@
   // DSpace default: "DSpace Angular :: "
   "repository.title.prefix": "DSpace :: ",
 
-  // Add Show more/less item tranlations,
+  // Add missing Show more/less item translations
   "item.truncatable-part.show-more": "Show more",
-  "item.truncatable-part.show-less": "Collapse"
+  "item.truncatable-part.show-less": "Collapse",
+
+  // Add missing Back to Browse button translation
+  "browse.back.all-results": "Back to Browse All",
 }
