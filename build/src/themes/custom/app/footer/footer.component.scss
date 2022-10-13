@@ -17,6 +17,18 @@
       background: #343a40;
       color: #fec700;
     }
+
+    &[href$="//unb.ca"]::before {
+      background-image: url(/assets/custom/images/unb-sail-r.png);
+      background-size: 18px 18px;
+      background-repeat: no-repeat;
+      content: "";
+      display: inline-block;
+      margin-right: 3px;
+      vertical-align: text-bottom;
+      width: 18px;
+      height: 18px;
+    }
   }
 
   h2 {
