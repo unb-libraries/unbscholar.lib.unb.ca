@@ -1,0 +1,31 @@
+<ng-container *ngIf="(site$ | async) as site">
+  <ds-view-tracker [object]="site"></ds-view-tracker>
+</ng-container>
+
+<div class="container-fluid home-search mb-4 py-5">
+  <div class="container">
+    <div class="border jumbotron">
+      <h2 class="h4 text-center">Search UNB Scholar</h2>
+      <ds-search-form [inPlaceSearch]="false" [searchPlaceholder]="'home.search-form.placeholder' | translate"></ds-search-form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="about mb-5">
+    <h2>About UNB Scholar</h2>
+    <p>
+      UNB Scholar is an institutional repository initiative of UNB Libraries intended to collect, preserve, showcase,
+      and promote the open access scholarly output of the UNB community. Use UNB Scholar to explore specific
+      collections, or search all content in the repository. Material submitted to the repository will also be freely
+      discoverable online through Google and other major search engines.
+    </p>
+
+    <p>
+      UNB Libraries welcomes submissions to UNB Scholar. Find out more about
+      <a href="#">depositing your publications!</a>
+    </p>
+  </div>
+
+  <ds-top-level-community-list></ds-top-level-community-list>
+</div>
