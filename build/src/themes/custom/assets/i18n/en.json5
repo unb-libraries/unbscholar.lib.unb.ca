@@ -4,7 +4,7 @@
   "nav.browse.header": "Browse UNB Scholar",
 
   // DSpace default: "DSpace Angular :: "
-  "repository.title.prefix": "DSpace :: ",
+  "repository.title.prefix": "UNB Scholar :: ",
 
   // Add missing Show more/less item translations
   "item.truncatable-part.show-more": "Show more",
@@ -12,4 +12,7 @@
 
   // Add missing Back to Browse button translation
   "browse.back.all-results": "Back to Browse All",
+
+  // Override home page Communities heading
+  "home.top-level-communities.head": "Communities in UNB Scholar"
 }
