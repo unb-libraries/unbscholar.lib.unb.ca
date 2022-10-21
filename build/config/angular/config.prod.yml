@@ -10,3 +10,9 @@ rest:
   nameSpace: /server
 themes:
   - name: 'custom'
+    headTags:
+      - tagName: link
+        attributes:
+          rel: icon
+          href: /assets/custom/images/favicons/favicon.ico
+          sizes: any
