@@ -132,12 +132,26 @@ header.header {
 }
 
 // DS Themed Home News.
-.jumbotron {
-  a {
-    &:focus {
-      color: $scholar-link-color-hover;
-      text-decoration: underline;
-      text-decoration-color: transparent;
+.home-search {
+  background: url(/assets/custom/images/top-image-1200.jpg) no-repeat center center;
+  background-size: cover;
+
+  .jumbotron {
+    background: rgb(233 236 239 / 87%);
+    margin: 1rem auto;
+    width: 93%;
+
+    a {
+      &:focus {
+        color: $scholar-link-color-hover;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    .jumbotron {
+      width: 66%;
     }
   }
 }
