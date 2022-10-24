@@ -1,0 +1,32 @@
+.search-wrapper {
+  background: url(/assets/custom/images/top-image-1200.jpg) no-repeat center center;
+  background-size: cover;
+
+  .search-container {
+    background: rgb(233 236 239 / 87%);
+    border: 1px solid $gray-600;
+    margin: 1rem auto;
+    width: 93%;
+
+    a {
+      &:focus {
+        color: #900;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+      }
+    }
+  }
+
+  @media (min-width: 576px) {
+    .jumbotron {
+      padding-bottom: 2rem;
+      padding-top: 2rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .jumbotron {
+      width: 66%;
+    }
+  }
+}
