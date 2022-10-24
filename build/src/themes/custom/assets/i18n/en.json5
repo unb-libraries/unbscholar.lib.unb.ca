@@ -4,7 +4,7 @@
   "nav.browse.header": "Browse UNB Scholar",
 
   // DSpace default: "DSpace Angular :: "
-  "repository.title.prefix": "UNB Scholar :: ",
+  "repository.title.prefix": "UNB Scholar Research Repository :: ",
 
   // Add missing Show more/less item translations
   "item.truncatable-part.show-more": "Show more",
