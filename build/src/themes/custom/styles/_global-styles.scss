@@ -145,12 +145,34 @@ footer {
   }
 }
 
-// DS Search Form.
+// DS Search Form (not working in home-page.component.scss).
 .search-wrapper {
   .search-container {
-    // This rule doesn't work in home-page.component.scss.
+    // This rule .
     .form-control {
       border-color: $gray-600;
+    }
+  }
+}
+
+// DS Themed Navbar (not working in navbar.component.scss).
+.navbar-light .navbar-nav .nav-link {
+  &:hover {
+    color: $scholar-link-color-hover;
+  }
+}
+
+nav.navbar.open {
+  .dropdown {
+    a.dropdown-toggle {
+      display: inline-block;
+    }
+
+    .dropdown-menu {
+      border: none;
+      box-shadow: none;
+      padding-left: 1rem;
+      padding-top: 0;
     }
   }
 }
