@@ -180,6 +180,9 @@ footer {
 
 // DS Themed Navbar (not working in navbar.component.scss).
 .navbar-light .navbar-nav .nav-link {
+  // Reduce theme.scss link color opacity.
+  color: rgba(0, 0, 0, 0.7);
+
   &:hover {
     color: $scholar-link-color-hover;
   }
