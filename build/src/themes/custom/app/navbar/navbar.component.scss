@@ -1,0 +1,43 @@
+// Restore lost navbar rules.
+nav.navbar {
+  border-bottom: 1px var(--bs-gray-400) solid;
+  align-items: baseline;
+}
+@media screen and (max-width: 768px) {
+  nav.navbar {
+    overflow: hidden;
+    height: 0;
+  }
+}
+
+// Simulate hover dropdown for custom About nav menu item.
+.navbar-container:not(.open) {
+  ul.navbar-nav {
+    li#aboutNav:hover {
+      .dropdown-menu {
+        display: block;
+      }
+    }
+  }
+}
+
+.navbar-nav .nav-item {
+  button.nav-link,
+  .dropdown-menu .nav-link {
+    &:focus,
+    &:hover {
+      background: none;
+      color: #900;
+      text-decoration: underline;
+    }
+    &:focus {
+      outline: 1px auto #101010;
+      outline-offset: 1px;
+      text-decoration: none;
+    }
+  }
+
+  .dropdown-menu {
+    margin-top: 0;
+  }
+}
