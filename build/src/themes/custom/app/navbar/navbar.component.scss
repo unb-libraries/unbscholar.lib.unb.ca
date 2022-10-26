@@ -21,8 +21,16 @@ nav.navbar {
   }
 }
 
+// Undo theme.scss black link color opacity.
+.navbar-light .navbar-nav .show > .nav-link,
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .nav-link.active {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .navbar-nav .nav-item {
-  button.nav-link,
+  button.dropdown-toggle,
   .dropdown-menu .nav-link {
     &:focus,
     &:hover {
@@ -37,6 +45,7 @@ nav.navbar {
     }
   }
 
+  // Eliminate whitespace between hover menu item + dropdown menu which deactivates dropdown.
   .dropdown-menu {
     margin-top: 0;
   }
