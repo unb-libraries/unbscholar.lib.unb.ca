@@ -5,6 +5,29 @@
 // Imports the base global style
 @import '../../../styles/_global-styles.scss';
 
+body {
+  font-family: 'ProximaNovaA-Regular', 'Century Gothic', AppleGothic, Arial, sans-serif;
+}
+strong,
+.font-weight-bold {
+  font-family: 'ProximaNovaA-Semibold', 'Century Gothic', AppleGothic, Arial, sans-serif;
+  font-weight: normal;
+}
+
+/* Headings */
+h1, h2, h3,
+.h1, .h2,.h3 {
+  font-family: 'ProximaNovaA-Thin', 'Century Gothic', AppleGothic, Arial, sans-serif;
+  font-weight: bold;
+  -webkit-text-stroke: 0.45px;
+  -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.1);
+}
+h4, h5, h6,
+.h4, .h5, .h6 {
+  font-family: 'ProximaNovaA-Regular', 'Century Gothic', AppleGothic, Arial, sans-serif;
+  font-weight: bold;
+}
+
 a {
   text-decoration: underline;
   text-decoration-color: $scholar-link-color-underline;
