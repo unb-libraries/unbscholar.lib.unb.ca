@@ -1,0 +1,30 @@
+<nav [ngClass]="{'open': !(menuCollapsed | async)}" [@slideMobileNav]="!(windowService.isXsOrSm() | async) ? 'default' : ((menuCollapsed | async) ? 'collapsed' : 'expanded')"
+     class="navbar navbar-light navbar-expand-md p-md-0 navbar-container" role="navigation" [attr.aria-label]="'nav.main.description' | translate">
+  <!-- TODO remove navbar-container class when https://github.com/twbs/bootstrap/issues/24726 is fixed -->
+  <div class="container">
+    <div class="reset-padding-md w-100">
+      <div id="collapsingNav">
+        <ul class="navbar-nav navbar-navigation mr-auto shadow-none">
+          <ng-container *ngFor="let section of (sections | async)">
+            <ng-container *ngComponentOutlet="(sectionMap$ | async).get(section.id)?.component; injector: (sectionMap$ | async).get(section.id)?.injector;"></ng-container>
+          </ng-container>
+          <li id="aboutNav">
+            <div class="dropdown nav-item ">
+              <button class="btn btn-link nav-link dropdown-toggle" id="aboutNavDropdownLink"
+              aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button">
+                <span>About</span>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="aboutNavDropdownLink">
+                <a class="dropdown-item nav-link" href="https://lib.unb.ca/unb-scholar">What is UNB Scholar?</a>
+                <a class="dropdown-item nav-link" href="https://lib.unb.ca/unb-scholar/deposit">Deposit to UNB Scholar</a>
+                <a class="dropdown-item nav-link" href="https://lib.unb.ca/unb-scholar/process">How does this process work?</a>
+                <a class="dropdown-item nav-link" href="https://lib.unb.ca/unb-scholar/policy">UNB Scholar Policy</a>
+                <a class="dropdown-item nav-link" href="https://lib.unb.ca/unb-scholar/contact">Contact</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
