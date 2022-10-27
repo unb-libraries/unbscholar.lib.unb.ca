@@ -5,16 +5,7 @@
 // Imports the base global style
 @import '../../../styles/_global-styles.scss';
 
-body {
-  font-family: 'ProximaNovaA-Regular', 'Century Gothic', AppleGothic, Arial, sans-serif;
-}
-strong,
-.font-weight-bold {
-  font-family: 'ProximaNovaA-Semibold', 'Century Gothic', AppleGothic, Arial, sans-serif;
-  font-weight: normal;
-}
-
-/* Headings */
+// UNB Font heading/bold customizations.
 h1, h2, h3,
 .h1, .h2,.h3 {
   font-family: 'ProximaNovaA-Thin', 'Century Gothic', AppleGothic, Arial, sans-serif;
@@ -26,6 +17,11 @@ h4, h5, h6,
 .h4, .h5, .h6 {
   font-family: 'ProximaNovaA-Regular', 'Century Gothic', AppleGothic, Arial, sans-serif;
   font-weight: bold;
+}
+strong,
+.font-weight-bold {
+  font-family: 'ProximaNovaA-Semibold', 'Century Gothic', AppleGothic, Arial, sans-serif;
+  font-weight: normal;
 }
 
 a {
