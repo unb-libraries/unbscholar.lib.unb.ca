@@ -9,6 +9,7 @@
             <ng-container *ngComponentOutlet="(sectionMap$ | async).get(section.id)?.component; injector: (sectionMap$ | async).get(section.id)?.injector;"></ng-container>
           </ng-container>
           <li ngbDropdown class="nav-item" id="aboutNav">
+              <!-- See https://ng-bootstrap.github.io/#/components/dropdown/examples -->
               <button type="button" class="btn btn-link nav-link"
               id="dropdownAbout" ngbDropdownToggle>About</button>
               <div ngbDropdownMenu aria-labelledby="dropdownAbout">
