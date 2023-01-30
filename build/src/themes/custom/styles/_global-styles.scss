@@ -198,3 +198,10 @@ nav.navbar.open {
     }
   }
 }
+
+.login-container {
+  .dropdown-divider,
+  .dropdown-item {
+    display: none;
+  }
+}
