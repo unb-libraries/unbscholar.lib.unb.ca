@@ -116,7 +116,7 @@ header.header {
     a.active {
       &:focus,
       &:hover {
-        color: #fff;
+        color: #fff!important;
         background-color: #730000;
         border-color: #600;
       }
