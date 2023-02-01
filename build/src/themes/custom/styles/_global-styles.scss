@@ -108,6 +108,21 @@ header.header {
     }
   }
 
+  // LogoutDropdownMenu.
+  .navbar[_ngcontent-dspace-angular-c281] a.active {
+    color: #fff;
+  }
+  .logoutDropdownMenu {
+    a.active {
+      &:focus,
+      &:hover {
+        color: #fff;
+        background-color: #730000;
+        border-color: #600;
+      }
+    }
+  }
+
   // DS Login container.
   .login-container {
     a {
