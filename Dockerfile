@@ -28,13 +28,14 @@ WORKDIR /app
 
 # Assemble application and config.
 COPY --from=builder ./app/dist /app/dist
+COPY --from=builder ./app/config/config.example.yml /app/config/config.yml
 COPY ./build/config/angular/config.prod.yml /app/config/config.prod.yml
 RUN touch /app/dist/browser/assets/config.json && chown node:node /app/dist/browser/assets/config.json
 USER node
 
 EXPOSE 4000
 ENTRYPOINT ["/usr/local/bin/node"]
-CMD ["./dist/server/main.js"]
+CMD ["dist/server/main"]
 
 # Container metadata.
 ARG BUILD_DATE
