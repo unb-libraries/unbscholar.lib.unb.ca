@@ -19,7 +19,10 @@ RUN apk --no-cache add \
 
 EXPOSE 4000
 ENTRYPOINT ["/scripts/run.sh"]
-
+# Despite being a 'build' image, do note that the above image also is what runs locally through compose. It provides an
+# entrypoint to a much faster development cycle - live theme rebuilds, etc. The image produced by the second build step
+# (below) is the production image.This may cause a divergence or production-only errors, as they have different daemons
+# serving the content.
 
 FROM node:14-alpine as prod
 MAINTAINER UNB Libraries <libsupport@unb.ca>
