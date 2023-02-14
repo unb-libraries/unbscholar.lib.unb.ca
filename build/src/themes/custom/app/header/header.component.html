@@ -1,11 +1,11 @@
 <header>
   <nav role="navigation" [attr.aria-label]="'nav.user.description' | translate" class="container navbar navbar-expand-md px-0">
-    <div class="d-flex flex-row justify-content-between">
-      <a class="navbar-brand my-2" routerLink="/home">
+    <div class="d-flex flex-grow-1">
+      <a class="navbar-brand m-2" routerLink="/home">
         <img src="assets/custom/images/unb-scholar-logo.png" [attr.alt]="'UNB Libraries: Scholar Research Repository' | translate"/>
       </a>
-
-      <div class="d-flex flex-grow-1 ml-auto justify-content-end align-items-center">
+    </div>
+    <div class="d-flex flex-grow-1 ml-auto justify-content-end align-items-center">
         <ds-themed-search-navbar></ds-themed-search-navbar>
         <ds-lang-switch></ds-lang-switch>
         <ds-themed-auth-nav-menu></ds-themed-auth-nav-menu>
@@ -17,7 +17,6 @@
             <span class="navbar-toggler-icon fas fa-bars fa-fw" aria-hidden="true"></span>
           </button>
         </div>
-      </div>
     </div>
   </nav>
 </header>
