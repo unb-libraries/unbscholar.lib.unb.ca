@@ -5,8 +5,12 @@ nav.navbar {
 }
 @media screen and (max-width: 768px) {
   nav.navbar {
+    height: 0!important;
     overflow: hidden;
-    height: 0;
+
+    &.open {
+      height: 100%!important;
+    }
   }
 }
 
