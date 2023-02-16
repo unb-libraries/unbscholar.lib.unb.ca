@@ -3,14 +3,18 @@
     font-size: 1.1rem
   }
 
-  #content-bottom-block-2 {
-    div.border-bottom {
-      border-bottom: none !important;
+  ds-recent-item-list {
+    div.mt4 {
+      margin-top: 0!important;
+    }
 
-      &.mb-4.pb-4 {
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
-      }
+    div.border-bottom {
+      border-bottom: none!important;
+    }
+
+    div.mb-4.pb-4 {
+      margin-bottom: 0!important;
+      padding-bottom: 0!important;
     }
 
     ds-type-badge {
