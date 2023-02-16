@@ -33,14 +33,6 @@
   }
 }
 
-ds-recent-item-list > div {
-  margin-top: 0!important;
-
-  & > .border-bottom {
-    border: none!important;
-  }
-}
-
 #content-bottom {
   @media (screen and max-width: 991px) {
     .card {
