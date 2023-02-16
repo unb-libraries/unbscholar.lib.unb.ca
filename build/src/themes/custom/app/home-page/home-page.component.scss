@@ -34,21 +34,7 @@
 }
 
 #content-bottom {
-  @media (screen and max-width: 991px) {
-    .card {
-      margin-bottom: 1rem;
-    }
-  }
-  @media (screen and min-width: 992px) {
-    .card {
-      max-width: 50%;
-
-      &:first-child {
-        margin-right: .5rem;
-      }
-      &:last-child {
-        margin-left: .5rem;
-      }
-    }
+  .card {
+    margin-bottom: 1rem;
   }
 }
