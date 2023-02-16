@@ -16,13 +16,13 @@ spec:
   selector:
     matchLabels:
       uri: unbscholar.lib.unb.ca
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
-      maxUnavailable: 0
+      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -44,16 +44,16 @@ spec:
             httpGet:
               path: /
               port: 4000
-            initialDelaySeconds: 65
-            timeoutSeconds: 3
-            periodSeconds: 15
+            initialDelaySeconds: 60
+            timeoutSeconds: 10
+            periodSeconds: 30
           livenessProbe:
             httpGet:
               path: /
               port: 4000
-            initialDelaySeconds: 130
-            timeoutSeconds: 3
-            periodSeconds: 15
+            initialDelaySeconds: 120
+            timeoutSeconds: 10
+            periodSeconds: 30
           env:
             -
               name: DEPLOY_ENV
