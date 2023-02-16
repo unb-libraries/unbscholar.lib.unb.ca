@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RecentItemListComponent as BaseComponent } from '../../../../app/home-page/recent-item-list/recent-item-list.component';
+import { RecentItemListComponent as BaseComponent } from '../../../../../app/home-page/recent-item-list/recent-item-list.component';
 
 @Component({
     selector: 'ds-recent-item-list',
