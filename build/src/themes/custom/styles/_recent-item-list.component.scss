@@ -1,0 +1,20 @@
+#content-bottom {
+  .lead {
+    font-size: 1.1rem
+  }
+
+  #content-bottom-block-2 {
+    div.border-bottom {
+      border-bottom: none !important;
+
+      &.mb-4.pb-4 {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+      }
+    }
+
+    ds-type-badge {
+      display: none;
+    }
+  }
+}
