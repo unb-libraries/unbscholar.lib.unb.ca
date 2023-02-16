@@ -14,5 +14,8 @@
   "browse.back.all-results": "Back to Browse All",
 
   // Override home page Communities heading
-  "home.top-level-communities.head": "Communities in UNB Scholar"
+  "home.top-level-communities.head": "Communities in UNB Scholar",
+
+  // Recent item list
+  "home.recent-submissions.head": "Recent Submissions"
 }
