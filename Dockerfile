@@ -36,6 +36,8 @@ COPY ./build/config/angular/config.prod.yml /app/config/config.prod.yml
 RUN touch /app/dist/browser/assets/config.json && chown node:node /app/dist/browser/assets/config.json
 USER node
 
+ENV NODE_OPTIONS --max_old_space_size=4096
+
 EXPOSE 4000
 ENTRYPOINT ["/usr/local/bin/node"]
 CMD ["dist/server/main"]
