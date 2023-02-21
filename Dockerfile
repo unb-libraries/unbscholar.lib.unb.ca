@@ -1,8 +1,8 @@
-FROM node:14-alpine as builder
+FROM node:16-alpine as builder
 MAINTAINER UNB Libraries <libsupport@unb.ca>
 
 ARG BUILD_CMD='yarn run build:prod'
-ARG DSPACE_REFSPEC=dspace-7.4
+ARG DSPACE_REFSPEC=dspace-7.5
 
 WORKDIR /app
 
@@ -24,7 +24,7 @@ ENTRYPOINT ["/scripts/run.sh"]
 # (below) is the production image.This may cause a divergence or production-only errors, as they have different daemons
 # serving the content.
 
-FROM node:14-alpine as prod
+FROM node:16-alpine as prod
 MAINTAINER UNB Libraries <libsupport@unb.ca>
 
 WORKDIR /app
