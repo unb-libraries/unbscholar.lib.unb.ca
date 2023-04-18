@@ -224,6 +224,8 @@ nav.navbar.open {
     display: none;
   }
 }
-ds-rss {
+/* Hide unwanted Scholar-sims */
+.list-unstyled ds-type-badge,
+ds-rss, {
   display: none;
 }
