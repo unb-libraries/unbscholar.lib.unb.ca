@@ -18,6 +18,7 @@ RUN apk --no-cache add \
   /scripts/buildAngularApp.sh
 
 EXPOSE 4000
+ENV NODE_OPTIONS --max_old_space_size=4096
 ENTRYPOINT ["/scripts/run.sh"]
 # Despite being a 'build' image, do note that the above image also is what runs locally through compose. It provides an
 # entrypoint to a much faster development cycle - live theme rebuilds, etc. The image produced by the second build step
