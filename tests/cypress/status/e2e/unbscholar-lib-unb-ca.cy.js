@@ -9,13 +9,13 @@ describe('UNB Scholar Research Repository', {baseUrl: host, groups: ['sites']}, 
     })
 
     specify('Search for "New Brunswick" should find 5+ results', () => {
-      cy.get('#home-search-block form').within(() => {
-        cy.get('input[name="islandora_simple_search_query"]')
+      cy.get('.search-container form').within(() => {
+        cy.get('input[name="query"]')
           .type('New Brunswick')
       }).submit()
       cy.url()
-        .should('match', /\/islandora\/search\/New%20Brunswick/)
-      cy.get('.islandora-solr-search-result')
+        .should('match', /\/search\?query=New%20Brunswick/)
+      cy.get('#search-content ul.list-unstyled li')
         .should('have.lengthOf.at.least', 5)
     })
   })
