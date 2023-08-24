@@ -9,13 +9,12 @@ describe('UNB Scholar Research Repository', {baseUrl: host, groups: ['sites']}, 
     })
 
     specify('Search for "New Brunswick" should find 5+ results', () => {
-      cy.get('.search-container form').within(() => {
-        cy.get('input[name="query"]')
-          .type('New Brunswick')
-      }).submit()
-      cy.url()
-        .should('match', /\/search\?query=New%20Brunswick/)
-      cy.get('#search-content ul.list-unstyled li')
+      cy.get('[data-test="search-box"]')
+        .type('New Brunswick')
+      cy.get('[data-test="search-button"')
+        .click()
+      
+      cy.get('[data-test="list-object"]')
         .should('have.lengthOf.at.least', 5)
     })
   })
