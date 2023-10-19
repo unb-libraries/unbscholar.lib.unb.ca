@@ -51,6 +51,10 @@ cache:
 themes:
   - name: 'custom'
     headTags:
+      - tagName: meta
+        attributes:
+          name: google-site-verification
+          content: 1jUEACSFaZwwaReH8NvyL4crgs73QGLr8hSyZOt864s
       - tagName: link
         attributes:
           rel: icon
