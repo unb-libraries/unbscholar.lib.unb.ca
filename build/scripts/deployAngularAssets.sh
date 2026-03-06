@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
+set -e
 git clone --depth 1 --branch $DSPACE_REFSPEC https://github.com/DSpace/dspace-angular.git /tmpDSpace
 rsync -a /tmpDSpace/ /app/
 rsync -a /build/config/angular/ /app/config/
-rsync -a /build/src/ /app/src/
+rsync -a --exclude='themes/custom' /build/src/ /app/src/
+
+# Patch angular.json to add unbscholar theme stylesheet bundle
+sed -i 's|"bundleName": "custom-theme"|"bundleName": "custom-theme" }, { "input": "src/themes/unbscholar/styles/theme.scss", "inject": false, "bundleName": "unbscholar-theme"|' /app/angular.json

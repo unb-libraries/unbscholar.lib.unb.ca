@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
-yarn install --network-timeout 300000
-yarn merge-i18n -s src/themes/custom/assets/i18n
+set -e
+npm install @popperjs/core@^2.11.8
+npm install
+npm run merge-i18n -- -s src/themes/unbscholar/assets/i18n
 $BUILD_CMD

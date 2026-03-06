@@ -1,30 +1,54 @@
 dockworker:
-  version: '5'
+  version: '6'
   application:
-    name: unbscholar.lib.unb.ca
-    finish_marker: 'Angular Live Development Server is listening'
-    project_prefix: SCHOLAR
-    upstream_images:
-      - ghcr.io/unb-libraries/unbscholar.dspace.lib.unb.ca:prod
-      - ghcr.io/unb-libraries/unbscholar.postgres.lib.unb.ca:prod
-      - ghcr.io/unb-libraries/unbscholar.solr.lib.unb.ca:prod
-      - node:12-alpine
-    uuid: 3102
-  deployment:
-    environments:
+    name: UNB Scholar Home
+    uri: https://unbscholar.lib.unb.ca
+    description: >
+      UNB Scholar is an institutional repository initiative of UNB Libraries intended to collect, preserve, showcase, and promote the open access scholarly output of the UNB community.
+    topics:
+      - scholar
+    identifiers:
+      id: unbscholar.lib.unb.ca
+      slug: unbscholar-lib-unb-ca
+      short_slug: scholar
+      uuid: 3102
+    framework:
+      name: Angular
+      version: 18
+      startup_finished_marker: 'Angular Live Development Server is listening'
+      endpoint:
+        name: http
+        port: 4000
+        readiness_timeout: 15
+    license:
+      license: MIT
+      holder: University of New Brunswick Libraries
+    shell:
+      path: /bin/sh
+  endpoints:
+    env:
       - prod
-    local:
-      localhost_hostnames:
-        - local-unbscholar.dspace.lib.unb.ca
-    workflow:
-      source: dockworker
-      type: prebuilt-deployment-workflow
-  github:
-    repo: unbscholar.lib.unb.ca
-    owner: unb-libraries
-  image:
-    push_branches:
-      - prod
-    name: ghcr.io/unb-libraries/unbscholar.lib.unb.ca
-    date_tag_image: true
-    repository: ghcr
+    deployments:
+      unbscholar-lib-unb-ca:
+        default: true
+        managed: true
+        name: unbscholar-lib-unb-ca
+  workflows:
+    vcs:
+      type: github
+      owner: unb-libraries
+      name: unbscholar.lib.unb.ca
+    jira:
+      project_keys:
+        - SCHOLAR
+    image:
+      name: ghcr.io/unb-libraries/unbscholar.lib.unb.ca
+      parent:
+        - ghcr.io/unb-libraries/unbscholar.dspace.lib.unb.ca:9.x
+        - ghcr.io/unb-libraries/unbscholar.postgres.lib.unb.ca:17.x
+        - ghcr.io/unb-libraries/unbscholar.solr.lib.unb.ca:9.x
+        - node:20-alpine
+      repository: GitHub
+      push-branches:
+        - dev
+        - prod

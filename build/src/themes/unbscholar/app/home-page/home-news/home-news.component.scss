@@ -1,0 +1,25 @@
+.search-wrapper {
+  background: url(/assets/unbscholar/images/conference-scholar.jpg) no-repeat center center;
+  background-size: cover;
+  padding-bottom: 6vw;
+  padding-top: 6vw;
+
+  .search-container {
+    background: rgb(233 236 239 / 87%);
+    border: 1px solid var(--bs-gray-600);
+    margin: 1rem auto;
+    width: 93%;
+
+    @media (min-width: 768px) {
+      width: 66%;
+    }
+
+    a {
+      &:focus {
+        color: #900;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+      }
+    }
+  }
+}

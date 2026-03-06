@@ -13,7 +13,11 @@ do
 done
 
 if [ "$DEPLOY_ENV" = "local" ]; then
-  yarn start:dev
+  ## Add the  -- --disable-host-check flag to the start:dev command in package.json
+  ## to allow the Angular dev server to run without host checking.
+  ## This is necessary for local development environments where the host may not be recognized.
+  sed -i 's/\(npm run serve\)"/\1 -- --disable-host-check"/' package.json
+  npm run start:dev
 else
-  yarn run serve:ssr
+  npm run serve:ssr
 fi

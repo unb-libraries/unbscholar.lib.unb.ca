@@ -1,0 +1,12 @@
+a.navbar-brand {
+  display: block;
+
+  img {
+    border-bottom: 2px inset transparent;
+    transition: all var(--transition-duration) var(--transition-timing-function);
+  }
+
+  &:hover img {
+    border-bottom-color: var(--unb-sail-red);
+  }
+}

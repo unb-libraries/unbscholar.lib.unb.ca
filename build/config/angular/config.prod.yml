@@ -49,7 +49,8 @@ cache:
       allowStale: true
 
 themes:
-  - name: 'custom'
+  - name: 'unbscholar'
+    extends: 'custom'
     headTags:
       - tagName: meta
         attributes:
@@ -59,29 +60,32 @@ themes:
         attributes:
           rel: icon
           sizes: any
-          href: /assets/custom/images/favicons/favicon.ico
+          href: /assets/unbscholar/images/favicons/favicon.ico
       - tagName: link
         attributes:
           rel: apple-touch-icon
-          href: assets/custom/images/favicons/apple-touch-icon.png
+          href: assets/unbscholar/images/favicons/apple-touch-icon.png
       - tagName: link
         attributes:
           rel: icon
           sizes: 32x32
           type: image/png
-          href: assets/custom/images/favicons/favicon-32x32.png
+          href: assets/unbscholar/images/favicons/favicon-32x32.png
       - tagName: link
         attributes:
           rel: icon
           sizes: 16x16
           type: image/png
-          href: assets/custom/images/favicons/favicon-16x16.png
+          href: assets/unbscholar/images/favicons/favicon-16x16.png
       - tagName: link
         attributes:
           rel: mask-icon
-          href: assets/custom/images/favicons/favicon.svg
+          href: assets/unbscholar/images/favicons/favicon.svg
           color: '#900000'
       - tagName: link
         attributes:
           rel: manifest
-          href: assets/custom/images/favicons/manifest.webmanifest
+          href: assets/unbscholar/images/favicons/manifest.webmanifest
+  # default theme
+  - name: dspace
+  - name: custom

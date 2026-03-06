@@ -1,8 +1,7 @@
-FROM node:16-alpine as builder
-MAINTAINER UNB Libraries <libsupport@unb.ca>
+FROM node:20-alpine AS builder
 
-ARG BUILD_CMD='yarn run build:prod'
-ARG DSPACE_REFSPEC=dspace-7.6.1
+ARG BUILD_CMD='npm run build:prod'
+ARG DSPACE_REFSPEC=dspace-9.2
 
 WORKDIR /app
 
@@ -18,15 +17,15 @@ RUN apk --no-cache add \
   /scripts/buildAngularApp.sh
 
 EXPOSE 4000
-ENV NODE_OPTIONS --max_old_space_size=4096
+ENV NODE_OPTIONS="--max_old_space_size=4096"
 ENTRYPOINT ["/scripts/run.sh"]
 # Despite being a 'build' image, do note that the above image also is what runs locally through compose. It provides an
 # entrypoint to a much faster development cycle - live theme rebuilds, etc. The image produced by the second build step
 # (below) is the production image.This may cause a divergence or production-only errors, as they have different daemons
 # serving the content.
 
-FROM node:16-alpine as prod
-MAINTAINER UNB Libraries <libsupport@unb.ca>
+
+FROM node:20-alpine AS prod
 
 WORKDIR /app
 
@@ -37,7 +36,7 @@ COPY ./build/config/angular/config.prod.yml /app/config/config.prod.yml
 RUN touch /app/dist/browser/assets/config.json && chown node:node /app/dist/browser/assets/config.json
 USER node
 
-ENV NODE_OPTIONS --max_old_space_size=4096
+ENV NODE_OPTIONS="--max_old_space_size=4096"
 
 EXPOSE 4000
 ENTRYPOINT ["/usr/local/bin/node"]
@@ -58,4 +57,5 @@ LABEL ca.unb.lib.generator="angular" \
   org.label-schema.vcs-url="https://github.com/unb-libraries/unbscholar.lib.unb.ca" \
   org.label-schema.vendor="University of New Brunswick Libraries" \
   org.label-schema.version=$VERSION \
+  org.opencontainers.image.authors="libsupport@unb.ca" \
   org.opencontainers.image.source="https://github.com/unb-libraries/unbscholar.lib.unb.ca"

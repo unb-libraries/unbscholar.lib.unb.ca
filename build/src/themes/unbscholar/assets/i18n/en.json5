@@ -1,0 +1,13 @@
+{
+  // DSpace default: "All of DSpace"
+  "menu.section.browse_global": "Browse",
+
+  // DSpace default: "DSpace Angular :: "
+  "repository.title.prefix": "UNB Scholar :: ",
+
+  // Home page themed search input
+  "home.search-form.placeholder": "Search the repository...",
+
+  // Page not found custom help text
+  "404.help": "We can't find the page you're looking for. Our repository platform has migrated. Unfortunately, we were unable to migrate existing links to content. However, all material was preserved, and new links (with persistent identifiers) are available.",
+}

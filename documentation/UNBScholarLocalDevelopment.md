@@ -8,6 +8,6 @@ Some quick notes:
   * user: dspace@local.admin.com
   * pass: localdevadminpass
 * ```start-over```, not ```rebuild``` - UNBScholar is unique in that it does not support several of our usual dockworker commands. local:rebuild is unlikely to ever work well.
-* The configured theme is ```custom```, and all changes should be made to it. Its location in the repository is ```/build/src/themes/custom```.
-* The theme ```custom``` inherits from, ```dspace```, and ```dspace``` has been left in the repository to use as a reference for variables and components.
-* Once deployed locally, any changes to the _themes_ or _assets_ can then be updated with the usual: ```dockworker theme:build-all```
+* The configured theme is ```unbscholar```, and all changes should be made to it. Its location in the repository is ```/build/src/themes/unbscholar```.
+* The theme ```unbscholar``` inherits from, ```custom```.
+* Once deployed locally, any changes to the _themes_ or _assets_ can then be updated with the usual: ```dockworker dspace:theme:compile```

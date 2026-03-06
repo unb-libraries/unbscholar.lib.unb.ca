@@ -1,5 +1,5 @@
 services:
-  unbscholar.lib.unb.ca:
+  unbscholar-lib-unb-ca:
     build:
       args:
         BUILD_CMD: ''
@@ -12,14 +12,14 @@ services:
       - env/common.env
       - env/angular.env
     volumes:
-       - ./build/src:/build/src
+      - ./build/src:/build/src
     expose:
       - "4000"
     networks:
       - unbscholar.lib.unb.ca
     ports:
       - "9988:4000"
-  unbscholar.dspace.lib.unb.ca:
+  unbscholar-dspace-lib-unb-ca:
     build:
       context: local/dspace/
     restart: unless-stopped

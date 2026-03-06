@@ -1,0 +1,16 @@
+// Override or add CSS variables for your theme here
+
+:root {
+  //--ds-header-logo-height: 80px;
+  //--ds-header-logo-height-xs: 50px;
+  //--ds-header-icon-color: #{$link-color};
+  //--ds-header-icon-color-hover: #{darken($link-color, 15%)};
+  //--bs-link-hover-color-rgb: 210 48 59;
+  --bs-link-hover-color-rgb: 136, 4, 1;
+  --bs-body-font-family:  ProximaNovaA-Regular, Century Gothic, AppleGothic, Arial, sans-serif;
+  --bs-font-weight-bold: 700;
+  --ds-header-icon-color-hover: rgb(var(--bs-link-hover-color-rgb));
+  --ds-home-news-link-hover-color: rgb(var(--bs-link-hover-color-rgb));
+  --ds-navbar-link-color: #001a1a;
+  --ds-navbar-link-color-hover: rgb(var(--bs-link-hover-color-rgb));
+}

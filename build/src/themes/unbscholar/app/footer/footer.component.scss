@@ -1,0 +1,126 @@
+// UNB Footer.
+.footer-wrapper {
+  background: var(--gray-blue-very-dark);
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-top: 1rem;
+
+  a.nav-link {
+    color: var(--gray-light);
+    border: none;
+    display: inline-block;
+    line-height: 190%;
+    padding: 0;
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--gray-light), 0.1);
+    transition: all var(--transition-duration) var(--transition-timing-function);
+    width: 100%;
+
+    &:focus,
+    &:hover {
+      background: #343a40;
+      color: var(--nav-link-dark-hover);
+      text-decoration-color: rgb(var(--nav-link-dark-hover), 0.9)!important;
+    }
+
+    &[href$="//unb.ca"]::before {
+      background-image: url(/assets/unbscholar/images/unb-sail-r.png);
+      background-size: 18px 18px;
+      background-repeat: no-repeat;
+      content: "";
+      display: inline-block;
+      margin-right: 3px;
+      vertical-align: text-bottom;
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  h2 {
+    color: var(--gray-very-light);
+    font-size: calc(var(--bs-spacer) * 1.1);
+  }
+
+  & > div:not(.footer-middle) a.nav-link::after {
+    color: rgb(216, 46, 59);
+    display: inline-block;
+    font: normal 900 1em/1 "Font Awesome 6 Free";
+    content: "\f105";
+    margin: 0 0 0 4px;
+    opacity: .9;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    vertical-align: text-bottom;
+  }
+
+  .block {
+    border: none;
+    margin: 0;
+  }
+
+  .footer-top {
+    transition: all var(--transition-duration) var(--transition-timing-function);
+
+    ul {
+      display: block;
+      margin-left: 0;
+      margin-bottom: var(--bs-spacer);
+    }
+
+    .unb-logo {
+      text-align: right;
+      width: 185px;
+      max-width: 100%;
+
+      @media (max-width: 991px) {
+        width: 100%;
+      }
+
+      a {
+        display: block;
+
+        img {
+          border-bottom: 2px outset transparent;
+          transition: all var(--transition-duration) var(--transition-timing-function);
+        }
+
+        &:focus img,
+        &:hover img {
+          border-bottom: 2px outset var(--nav-link-dark-hover);
+        }
+      }
+    }
+  }
+
+  .footer-middle {
+    h2, ul {
+      display: inline-flex;
+    }
+  }
+
+  .footer-bottom {
+    background: var(--footer-bottom-bg);
+  }
+
+  .footer-middle,
+  .footer-bottom {
+    .nav-item {
+      margin: calc(var(--bs-spacer) * 0.5);
+
+      &:not(:first-child) {
+        margin-left: var(--bs-spacer);
+      }
+    }
+
+    .nav-link {
+      white-space: nowrap;
+
+      &:hover {
+        background: var(--nav-link-dark-hover-bg);
+      }
+    }
+  }
+
+  .text-unb-red {
+    color: var(--unb-red);
+  }
+}

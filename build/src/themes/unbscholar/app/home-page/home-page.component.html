@@ -1,0 +1,24 @@
+<ds-home-coar></ds-home-coar>
+<ds-home-news></ds-home-news>
+
+@if (!showDiscoverFilters) {
+<div class="container">
+  <ng-container *ngTemplateOutlet="homeContent"></ng-container>
+</div>
+}
+<ds-suggestions-popup></ds-suggestions-popup>
+
+<ng-template #homeContent>
+  <div class="card">
+    <div class="card-body">
+      <ds-top-level-community-list></ds-top-level-community-list>
+    </div>
+  </div>
+  @if (recentSubmissionspageSize>0) {
+    <div id="recent-card" class="card">
+      <div class="card-body">
+        <ds-recent-item-list></ds-recent-item-list>
+      </div>
+    </div>
+  }
+</ng-template>

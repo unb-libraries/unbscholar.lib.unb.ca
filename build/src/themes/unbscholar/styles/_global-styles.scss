@@ -1,0 +1,163 @@
+// Add any global css for the theme here
+
+// Imports the base global style
+@import '../../../styles/_global-styles.scss';
+
+// Global Styles
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+  font-family: var(--body-font-family-bold);
+  font-weight: var(--bs-font-weight-bold);
+}
+
+a {
+  text-decoration: underline;
+  text-decoration-color: rgb(var(--bs-link-color-rgb), .3)!important;
+  transition: color var(--transition-duration) var(--transition-timing-function),
+              outline-color var(--transition-duration) var(--transition-timing-function),
+              text-decoration-color var(--transition-duration) var(--transition-timing-function);
+
+  &:focus-visible {
+    color: rgb(var(--bs-link-hover-color-rgb), 1)!important;
+    outline-color: var(--bs-link-hover-color-rgb);
+    outline-offset: 2px;
+    text-decoration: none;
+  }
+  &:hover {
+    text-decoration-color: rgb(var(--bs-link-hover-color-rgb), 1)!important;
+  }
+}
+
+nav {
+  a {
+    text-decoration: none!important;
+  }
+}
+
+ds-rss {
+  display: none!important;
+}
+
+.btn-primary {
+  color: var(--bs-white);
+  background-color: rgb(var(--bs-link-hover-color-rgb));
+  border-color: rgba(var(--bs-link-hover-color-rgb), 0.7);
+  box-shadow: inset 0 1px #ffffff26, 0 1px 1px #00000013;
+
+  &:focus-visible,
+  &:hover {
+    background-color: #730000;
+    border-color: #600;
+  }
+}
+
+.form-control {
+  border-color: var(--bs-gray-600);
+
+  &:focus-visible {
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 7%), 0 0 0 .2rem rgb(153 0 0 / 25%);
+    border-color: transparent;
+    outline: 0;
+  }
+}
+
+#main-navbar {
+  .navbar-nav {
+    .ds-menu-toggler-wrapper {
+      &:focus-visible,
+      &:hover {
+        .ds-menu-item {
+          color: rgb(var(--bs-link-hover-color-rgb))!important;
+          outline: 0;
+          text-decoration-color: rgb(var(--bs-link-hover-color-rgb))!important;
+        }
+      }
+
+      &:focus-visible,
+      &[aria-expanded="true"] {
+        color: rgb(var(--bs-link-hover-color-rgb));
+        text-decoration-color: rgb(var(--bs-link-hover-color-rgb))!important;
+
+        .fa-caret-down {
+          color: rgb(var(--bs-link-hover-color-rgb));
+        }
+      }
+
+      .fa-caret-down {
+        &:before {
+          display: inline-block;
+        }
+      }
+    }
+
+    .ds-menu-item {
+      text-decoration: underline!important;
+      text-decoration-color: rgb(var(--bs-link-color-rgb), 0)!important;
+
+      &[aria-expanded="true"],
+      &:focus-visible {
+        color: rgb(var(--bs-link-hover-color-rgb))!important;
+        text-decoration-color: rgb(var(--bs-link-hover-color-rgb), 0)!important;
+      }
+      &:hover {
+        text-decoration-color: rgb(var(--bs-link-hovercolor-rgb), 1)!important;
+      }
+    }
+
+    .flex-fill {
+      flex: 0 !important;
+    }
+  }
+
+  /* Fix 2-pixel area between nav button/dropdown menu where mouse hover deactivates. */
+  a[aria-expanded="true"] {
+    .ds-menu-item {
+      color: rgb(var(--bs-link-hover-color-rgb))!important;
+    }
+  }
+
+  .dropdown {
+    #dropdownMenuSlide {
+      top: 2.35rem!important;
+    }
+
+    .dropdown-item {
+      &:focus,
+      &:hover {
+        background-color: unset;
+      }
+    }
+  }
+}
+
+/* Style Browse & About dropdown menus */
+.ds-menu-item-wrapper {
+  span[tabindex="0"] {
+    &:focus-visible {
+      color: rgb(var(--bs-link-hover-color-rgb));
+    }
+  }
+
+  .nav-dropdown-menu {
+    border: var(--bs-border-width) solid var(--bs-border-color-translucent)!important;
+    border-radius: var(--bs-border-radius)!important;;
+    box-shadow: var(--bs-box-shadow)!important;
+  }
+}
+
+/* Themed pager */
+.page-item.active .page-link {
+  z-index: 3;
+  color: var(--bs-white);
+  background-color: rgb(var(--bs-link-hover-color-rgb));
+  border-color: rgba(var(--bs-link-hover-color-rgb), 0.7);
+}
+
+/* Override Recent Item List Component BS classes */
+#recent-card {
+    .mt-4 {
+        margin-top: 0!important;
+    }
+    .border-bottom {
+        display: none!important;
+    }
+}

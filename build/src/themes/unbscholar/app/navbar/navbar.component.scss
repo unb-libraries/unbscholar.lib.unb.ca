@@ -1,0 +1,7 @@
+/* Fix dropdown carat alignment */
+#dropdownAbout {
+  &:after {
+    margin-left: 0;
+    vertical-align: middle;
+  }
+}
