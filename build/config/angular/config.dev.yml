@@ -22,28 +22,28 @@ themes:
       - tagName: link
         attributes:
           rel: apple-touch-icon
-          href: assets/unbscholar/images/favicons/apple-touch-icon.png
+          href: /assets/unbscholar/images/favicons/apple-touch-icon.png
       - tagName: link
         attributes:
           rel: icon
           sizes: 32x32
           type: image/png
-          href: assets/unbscholar/images/favicons/favicon-32x32.png
+          href: /assets/unbscholar/images/favicons/favicon-32x32.png
       - tagName: link
         attributes:
           rel: icon
           sizes: 16x16
           type: image/png
-          href: assets/unbscholar/images/favicons/favicon-16x16.png
+          href: /assets/unbscholar/images/favicons/favicon-16x16.png
       - tagName: link
         attributes:
           rel: mask-icon
-          href: assets/unbscholar/images/favicons/favicon.svg
+          href: /assets/unbscholar/images/favicons/favicon.svg
           color: '#900000'
       - tagName: link
         attributes:
           rel: manifest
-          href: assets/unbscholar/images/favicons/manifest.webmanifest
+          href: /assets/unbscholar/images/favicons/manifest.webmanifest
   - name: dspace
   - name: custom
   
