@@ -10,3 +10,6 @@ sed -i 's|"bundleName": "custom-theme"|"bundleName": "custom-theme" }, { "input"
 
 # Patch angular.json to serve src/favicon.ico at URL root /favicon.ico (Chrome auto-fetches this regardless of <link rel=icon>)
 sed -i 's|"src/assets",|{ "glob": "favicon.ico", "input": "src/", "output": "/" }, "src/assets",|' /app/angular.json
+
+# Patch robots.txt.ejs to add Crawl-delay to the default User-agent: * group
+sed -i "/^User-agent: \*$/a Crawl-delay: ${CRAWL_DELAY}" /app/src/robots.txt.ejs

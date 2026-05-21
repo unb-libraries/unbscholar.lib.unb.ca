@@ -2,6 +2,7 @@ FROM node:20-alpine AS builder
 
 ARG BUILD_CMD='npm run build:prod'
 ARG DSPACE_REFSPEC=dspace-9.2
+ENV CRAWL_DELAY=10
 
 WORKDIR /app
 
