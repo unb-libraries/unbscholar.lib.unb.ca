@@ -1,0 +1,23 @@
+Silence the upstream "self link doesn't match" warn in REST response parsing.
+
+DSpace REST caps size=9999 at size=1000 and reorders embed params on
+GET responses. The Angular client emits a console.warn for the mismatch
+on every paginated fetch (~315 occurrences per 3h in our SSR logs).
+The behaviour is functionally correct — the warn is just noise.
+
+Lifecycle: delete this file when upstream either (a) fixes the
+ordering/cap behaviour in dspace-angular's request URL builder so the
+response self-link matches, or (b) demotes / removes the warn. The
+`patch --fuzz=0` invocation in deployAngularAssets.sh will fail loudly
+once the upstream line no longer matches the patch's removal target.
+
+--- a/src/app/core/data/dspace-rest-response-parsing.service.ts
++++ b/src/app/core/data/dspace-rest-response-parsing.service.ts
+@@ -170,7 +170,6 @@
+         const expected = splitUrlInParts(urlWithoutEmbedParams);
+         const actual = splitUrlInParts(response.payload._links.self.href);
+         if (expected[0] === actual[0] && (expected.some((e) => !actual.includes(e)) || actual.some((e) => !expected.includes(e)))) {
+-          console.warn(`The response for '${urlWithoutEmbedParams}' has the self link '${response.payload._links.self.href}'. These don't match. This could mean there's an issue with the REST endpoint`);
+           response.payload._links = Object.assign({}, response.payload._links, {
+             self: {
+               href: urlWithoutEmbedParams,
