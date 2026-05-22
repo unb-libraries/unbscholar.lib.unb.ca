@@ -50,6 +50,9 @@ cache:
       # This ensures stale pages (older than timeToLive) are never returned from the cache, but some users will wait on SSR.
       allowStale: true
 
+info:
+  enableCOARNotifySupport: false
+
 themes:
   - name: 'unbscholar'
     extends: 'custom'
