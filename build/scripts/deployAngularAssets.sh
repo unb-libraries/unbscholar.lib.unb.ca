@@ -15,5 +15,8 @@ sed -i 's|"src/assets",|{ "glob": "favicon.ico", "input": "src/", "output": "/" 
 cp /app/src/assets/unbscholar/images/favicons/apple-touch-icon.png /app/src/assets/unbscholar/images/favicons/apple-touch-icon-precomposed.png
 sed -i 's|"src/assets",|{ "glob": "apple-touch-icon*.png", "input": "src/assets/unbscholar/images/favicons/", "output": "/" }, "src/assets",|' /app/angular.json
 
+# Silence upstream "self link doesn't match" warn: DSpace REST caps size=9999 at size=1000 and reorders embed params, which is functionally correct but spams SSR logs hundreds of times per page.
+sed -i "/These don't match/ s|console\\.warn|void|" /app/src/app/core/data/dspace-rest-response-parsing.service.ts
+
 # Patch robots.txt.ejs to add Crawl-delay to the default User-agent: * group
 sed -i "/^User-agent: \*$/a Crawl-delay: ${CRAWL_DELAY}" /app/src/robots.txt.ejs
