@@ -9,6 +9,7 @@ WORKDIR /app
 COPY build /build
 RUN apk --no-cache add \
     git \
+    patch \
     postfix \
     rsync \
     util-linux && \

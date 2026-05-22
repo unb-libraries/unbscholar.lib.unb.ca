@@ -5,6 +5,11 @@ rsync -a /tmpDSpace/ /app/
 rsync -a /build/config/angular/ /app/config/
 rsync -a --exclude='themes/custom' /build/src/ /app/src/
 
+# Apply local patches against the upstream clone. --fuzz=0 ensures any upstream
+# drift in the context lines fails the build loudly instead of silently
+# mis-applying. See build/patches/<name>.patch headers for lifecycle notes.
+patch -p1 --fuzz=0 -d /app < /build/patches/server-response-headers-sent.patch
+
 # Patch angular.json to add unbscholar theme stylesheet bundle
 sed -i 's|"bundleName": "custom-theme"|"bundleName": "custom-theme" }, { "input": "src/themes/unbscholar/styles/theme.scss", "inject": false, "bundleName": "unbscholar-theme"|' /app/angular.json
 

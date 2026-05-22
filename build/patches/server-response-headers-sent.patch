@@ -1,0 +1,39 @@
+Mirror PR #4733's headersSent guard into ServerResponseService.
+
+Upstream PR #4733 (merged 2025-09-30, present in dspace-9.2) added
+`if (res.headersSent) return;` to server.ts but missed
+ServerResponseService, which has the same race — observables inside
+the SSR chain (Signposting, status setters) keep calling
+setHeader/setStatus after BitstreamDownloadPage has already flushed a
+302 response, producing ERR_HTTP_HEADERS_SENT stack traces in logs.
+
+Lifecycle: delete this file when upstream merges an equivalent guard
+into ServerResponseService. The `patch --fuzz=0` invocation in
+deployAngularAssets.sh will fail loudly ("Reversed (or previously
+applied) patch detected") once the upstream code already includes the
+guard, surfacing the redundancy in the next Docker build.
+
+Refs:
+  - https://github.com/DSpace/dspace-angular/issues/2315
+  - https://github.com/DSpace/dspace-angular/pull/4733
+
+--- a/src/app/core/services/server-response.service.ts
++++ b/src/app/core/services/server-response.service.ts
+@@ -25,7 +25,7 @@ export class ServerResponseService {
+    * @param message
+    */
+   setStatus(code: number, message?: string): this {
+-    if (this.response) {
++    if (this.response && !this.response.headersSent) {
+       this.response.statusCode = code;
+       if (message) {
+         this.response.statusMessage = message;
+@@ -77,7 +77,7 @@ export class ServerResponseService {
+    * @param content
+    */
+   setHeader(header: string, content: string) {
+-    if (this.response) {
++    if (this.response && !this.response.headersSent) {
+       this.response.setHeader(header, content);
+     }
+   }
