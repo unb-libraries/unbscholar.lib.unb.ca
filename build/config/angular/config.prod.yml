@@ -8,12 +8,8 @@ rest:
   host: unbscholar.dspace.lib.unb.ca
   port: 443
   nameSpace: /server
-  # SSR-only internal REST URL: keeps pod-to-pod traffic on the cluster
-  # network instead of hairpinning through the public LB + Shibboleth proxy.
-  # Stripped from TransferState before HTML reaches the browser, so external
-  # visitors continue to use the public host above. Must match
-  # dspace.server.ssr.url in the backend's local.cfg.
-  ssrBaseUrl: http://unbscholar-dspace-lib-unb-ca:8080/server
+  # Optional internal SSR REST URL: set DSPACE_REST_SSRBASEURL env var to keep
+  # SSR traffic on-cluster. Unset/empty = SSR uses the public host above.
 cache:
   serverSide:
     # Set to true to see all cache hits/misses/refreshes in your console logs. Useful for debugging SSR caching issues.

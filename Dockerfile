@@ -38,6 +38,8 @@ RUN touch /app/dist/browser/assets/config.json && chown node:node /app/dist/brow
 USER node
 
 ENV NODE_OPTIONS="--max_old_space_size=4096"
+# Optional SSR-only internal REST URL; read at runtime by dspace-angular.
+ENV DSPACE_REST_SSRBASEURL=""
 
 EXPOSE 4000
 ENTRYPOINT ["/usr/local/bin/node"]
