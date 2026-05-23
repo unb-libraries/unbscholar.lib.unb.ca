@@ -47,9 +47,9 @@ ENTRYPOINT ["/usr/local/bin/node"]
 CMD ["dist/server/main"]
 
 # Container metadata.
-ARG BUILD_DATE
-ARG VCS_REF
-ARG VERSION
+ARG BUILD_DATE=unknown
+ARG VCS_REF=unknown
+ARG VERSION=unknown
 LABEL ca.unb.lib.generator="angular" \
   com.microscaling.docker.dockerfile="/Dockerfile" \
   com.microscaling.license="MIT" \
