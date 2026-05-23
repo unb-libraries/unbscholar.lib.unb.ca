@@ -40,7 +40,7 @@ assets.splice(
   { glob: "apple-touch-icon*.png", input: "src/assets/unbscholar/images/favicons/", output: "/" },
 );
 
-// Let dev server accept any host; replaces the runtime sed against package.json.
-serveOpts.allowedHosts = ["all"];
+// Allow dev-server access via non-localhost names (docker-compose, LAN, etc).
+serveOpts.disableHostCheck = true;
 
 fs.writeFileSync(FILE, JSON.stringify(data, null, 2) + "\n");
