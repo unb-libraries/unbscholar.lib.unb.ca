@@ -32,11 +32,11 @@ FROM node:20-alpine AS prod
 
 WORKDIR /app
 
-COPY --from=builder ./app/dist /app/dist
-COPY --from=builder ./app/config/config.example.yml /app/config/config.yml
-COPY ./build/config/angular/config.prod.yml /app/config/config.prod.yml
-RUN touch /app/dist/browser/assets/config.json && chown node:node /app/dist/browser/assets/config.json
+COPY --from=builder --chown=node:node ./app/dist /app/dist
+COPY --from=builder --chown=node:node ./app/config/config.example.yml /app/config/config.yml
+COPY --chown=node:node ./build/config/angular/config.prod.yml /app/config/config.prod.yml
 USER node
+RUN touch /app/dist/browser/assets/config.json
 
 ENV NODE_OPTIONS="--max_old_space_size=4096"
 # Optional SSR-only internal REST URL; read at runtime by dspace-angular.
