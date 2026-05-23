@@ -6,7 +6,7 @@ ARG BUILD_CMD='npm run build:prod'
 WORKDIR /app
 
 # Layers below are ordered by invalidation frequency
-RUN apk --no-cache add git patch postfix rsync util-linux
+RUN apk --no-cache add git patch rsync util-linux
 
 RUN git clone --depth 1 --branch "$DSPACE_REFSPEC" \
       https://github.com/DSpace/dspace-angular.git /app
@@ -16,7 +16,6 @@ RUN npm ci --no-audit --no-fund
 
 COPY build /build
 RUN mv /build/scripts /scripts \
- && /scripts/startPostfix.sh \
  && /scripts/applyOverlays.sh \
  && /scripts/applyPatches.sh \
  && npm run merge-i18n -- -s src/themes/unbscholar/assets/i18n \
