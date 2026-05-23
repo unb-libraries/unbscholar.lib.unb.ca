@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
+# Builder/dev entrypoint; prod does not run in the build container.
+# See Dockerfile for prod entrypoint
 set -e
 
 for i in /scripts/pre-init.d/*sh
