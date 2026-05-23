@@ -1,37 +1,38 @@
 FROM node:20-alpine AS builder
 
-ARG BUILD_CMD='npm run build:prod'
 ARG DSPACE_REFSPEC=dspace-9.2
-ENV CRAWL_DELAY=10
+ARG BUILD_CMD='npm run build:prod'
 
 WORKDIR /app
 
-COPY build /build
-RUN apk --no-cache add \
-    git \
-    patch \
-    postfix \
-    rsync \
-    util-linux && \
-  mv /build/scripts /scripts && \
-  /scripts/startPostfix.sh && \
-  /scripts/deployAngularAssets.sh && \
-  /scripts/buildAngularApp.sh
+# Layers below are ordered by invalidation frequency
+RUN apk --no-cache add git patch postfix rsync util-linux
 
-EXPOSE 4000
+RUN git clone --depth 1 --branch "$DSPACE_REFSPEC" \
+      https://github.com/DSpace/dspace-angular.git /app
+
+# Lockfile-deterministic install; @popperjs/core comes in via bootstrap peer dep.
+RUN npm ci --no-audit --no-fund
+
+COPY build /build
+RUN mv /build/scripts /scripts \
+ && /scripts/startPostfix.sh \
+ && /scripts/applyOverlays.sh \
+ && /scripts/applyPatches.sh \
+ && npm run merge-i18n -- -s src/themes/unbscholar/assets/i18n \
+ && sh -c "$BUILD_CMD"
+
 ENV NODE_OPTIONS="--max_old_space_size=4096"
+EXPOSE 4000
 ENTRYPOINT ["/scripts/run.sh"]
-# Despite being a 'build' image, do note that the above image also is what runs locally through compose. It provides an
-# entrypoint to a much faster development cycle - live theme rebuilds, etc. The image produced by the second build step
-# (below) is the production image.This may cause a divergence or production-only errors, as they have different daemons
-# serving the content.
+# This builder is also the local-dev image (via compose). Dev vs prod can drift
+# because they serve content with different daemons; watch for prod-only bugs.
 
 
 FROM node:20-alpine AS prod
 
 WORKDIR /app
 
-# Assemble application and config.
 COPY --from=builder ./app/dist /app/dist
 COPY --from=builder ./app/config/config.example.yml /app/config/config.yml
 COPY ./build/config/angular/config.prod.yml /app/config/config.prod.yml
