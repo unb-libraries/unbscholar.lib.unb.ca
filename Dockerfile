@@ -1,5 +1,4 @@
 FROM node:16-alpine as builder
-MAINTAINER UNB Libraries <libsupport@unb.ca>
 
 ARG BUILD_CMD='yarn run build:prod'
 ARG DSPACE_REFSPEC=dspace-7.6.1
@@ -26,7 +25,6 @@ ENTRYPOINT ["/scripts/run.sh"]
 # serving the content.
 
 FROM node:16-alpine as prod
-MAINTAINER UNB Libraries <libsupport@unb.ca>
 
 WORKDIR /app
 
@@ -58,4 +56,5 @@ LABEL ca.unb.lib.generator="angular" \
   org.label-schema.vcs-url="https://github.com/unb-libraries/unbscholar.lib.unb.ca" \
   org.label-schema.vendor="University of New Brunswick Libraries" \
   org.label-schema.version=$VERSION \
+  org.opencontainers.image.authors="UNB Libraries <libsupport@unb.ca>" \
   org.opencontainers.image.source="https://github.com/unb-libraries/unbscholar.lib.unb.ca"
