@@ -47,7 +47,7 @@ dockworker:
         - ghcr.io/unb-libraries/unbscholar.dspace.lib.unb.ca:9.x
         - ghcr.io/unb-libraries/unbscholar.postgres.lib.unb.ca:17.x
         - ghcr.io/unb-libraries/unbscholar.solr.lib.unb.ca:9.x
-        - node:20-alpine
+        - ghcr.io/unb-libraries/node:24.x
       repository: GitHub
       push-branches:
         - dev
