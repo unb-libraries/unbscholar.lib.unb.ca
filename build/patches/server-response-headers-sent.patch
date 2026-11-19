@@ -9,7 +9,7 @@ setHeader/setStatus after BitstreamDownloadPage has already flushed a
 
 Lifecycle: delete this file when upstream merges an equivalent guard
 into ServerResponseService. The `patch --fuzz=0` invocation in
-deployAngularAssets.sh will fail loudly ("Reversed (or previously
+applyPatches.sh will fail loudly ("Reversed (or previously
 applied) patch detected") once the upstream code already includes the
 guard, surfacing the redundancy in the next Docker build.
 

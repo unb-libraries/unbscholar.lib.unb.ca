@@ -8,7 +8,7 @@ The behaviour is functionally correct — the warn is just noise.
 Lifecycle: delete this file when upstream either (a) fixes the
 ordering/cap behaviour in dspace-angular's request URL builder so the
 response self-link matches, or (b) demotes / removes the warn. The
-`patch --fuzz=0` invocation in deployAngularAssets.sh will fail loudly
+`patch --fuzz=0` invocation in applyPatches.sh will fail loudly
 once the upstream line no longer matches the patch's removal target.
 
 --- a/src/app/core/data/dspace-rest-response-parsing.service.ts

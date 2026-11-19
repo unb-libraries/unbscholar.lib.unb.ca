@@ -31,7 +31,7 @@ class DspaceThemeCommands extends DockworkerDaemonCommands
         ]
     ): void {
         $cmd = [
-            '/scripts/updateThemes.sh',
+            '/scripts/applyOverlays.sh',
         ];
         $this->executeContainerCommand(
             $options['env'],
