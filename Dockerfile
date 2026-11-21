@@ -1,6 +1,6 @@
 FROM ghcr.io/unb-libraries/node:24.x AS builder
 
-ARG DSPACE_REFSPEC=dspace-9.2
+ARG DSPACE_REFSPEC=dspace-10.1
 ARG BUILD_CMD='npm run build:prod'
 
 WORKDIR /app

@@ -14,7 +14,7 @@ dockworker:
       uuid: 3102
     framework:
       name: Angular
-      version: 18
+      version: 20
       startup_finished_marker: 'Angular Live Development Server is listening'
       endpoint:
         name: http
@@ -44,10 +44,10 @@ dockworker:
     image:
       name: ghcr.io/unb-libraries/unbscholar.lib.unb.ca
       parent:
-        - ghcr.io/unb-libraries/unbscholar.dspace.lib.unb.ca:9.x
-        - ghcr.io/unb-libraries/unbscholar.postgres.lib.unb.ca:17.x
-        - ghcr.io/unb-libraries/unbscholar.solr.lib.unb.ca:9.x
         - ghcr.io/unb-libraries/node:24.x
+        - ghcr.io/unb-libraries/unbscholar.dspace.lib.unb.ca:dev
+        - mirror.gcr.io/library/postgres:17.12
+        - mirror.gcr.io/library/solr:9.11
       repository: GitHub
       push-branches:
         - dev

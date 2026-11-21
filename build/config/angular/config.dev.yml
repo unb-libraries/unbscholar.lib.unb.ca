@@ -2,6 +2,8 @@ ui:
   ssl: false
   host: 0.0.0.0
   port: 4000
+  # Public URL; SSR runs only when the request Host matches it (DSpace 10+).
+  baseUrl: http://localhost:9988
   nameSpace: /
 
 rest:
