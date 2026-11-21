@@ -1,0 +1,31 @@
+Use the configured language code when matching the browser's Accept-Language.
+
+LocaleService.getCurrentLanguageCode() compares Accept-Language entries with the
+configured languages case-insensitively, but returns the browser's spelling. A
+client sending "zh-tw" then gets lang "zh-tw", and the translate loaders look up
+the hashed file "zh-TW.<hash>.json" by that exact string: the server reads
+"zh-tw.undefined.json" (ENOENT), every translate pipe throws, and SSR returns a
+half-rendered page with no <html lang>. Seen in prod from 2026-11-21 (10.1).
+
+This returns the configured code that matched, so "zh-tw" becomes "zh-TW".
+
+Lifecycle: delete this file when upstream dspace-angular returns the configured
+code here. `patch --fuzz=0` in applyPatches.sh fails loudly once the context
+no longer matches.
+
+--- a/src/app/core/locale/locale.service.ts
++++ b/src/app/core/locale/locale.service.ts
+@@ -85,9 +85,10 @@
+           map(browserLangs => {
+             return browserLangs
+               .map(browserLang => browserLang.split(';')[0])
+-              .find(browserLang =>
+-                this.translate.getLangs().some(userLang => userLang.toLowerCase() === browserLang.toLowerCase()),
+-              ) || this.appConfig.fallbackLanguage;
++              .map(browserLang =>
++                this.translate.getLangs().find(userLang => userLang.toLowerCase() === browserLang.toLowerCase()),
++              )
++              .find(userLang => isNotEmpty(userLang)) || this.appConfig.fallbackLanguage;
+           }),
+         );
+     }

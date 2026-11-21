@@ -4,6 +4,7 @@ set -e
 # Source overlay patches (JS/TS). --fuzz=0 makes upstream drift fail loud.
 patch -p1 --fuzz=0 -d /app < /build/patches/server-response-headers-sent.patch
 patch -p1 --fuzz=0 -d /app < /build/patches/dspace-rest-response-self-link-warn.patch
+patch -p1 --fuzz=0 -d /app < /build/patches/locale-configured-language-code.patch
 
 # angular.json edits live in patchAngularJson.js (with structural asserts).
 node /scripts/patchAngularJson.js
