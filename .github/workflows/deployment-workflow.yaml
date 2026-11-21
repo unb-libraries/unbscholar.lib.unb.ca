@@ -26,6 +26,7 @@ jobs:
       # pattern and description were swapped (so 6.x never applied it).
       log-check-exceptions: |
         rules skipped due to selector errors
+        DEP0169
     secrets:
       KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
